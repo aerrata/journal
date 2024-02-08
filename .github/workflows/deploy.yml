@@ -38,11 +38,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build
+          path: dist
       - name: Check
         run: |
           ls
           pwd
-          cd dist
       - name: Deploying to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
