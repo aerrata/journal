@@ -44,4 +44,4 @@ jobs:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           external_repository: aerrata/aerrata.github.io
           publish_branch: main
-          publish_dir: build
+          publish_dir: ./build
