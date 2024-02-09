@@ -16,30 +16,30 @@ const { Content } = await post.render()
 ---
 
 <BaseLayout title={post.data.title}>
-  <h1 class="text-2xl md:text-3xl font-bold pb-6">{post.data.title}</h1>
-  <div class="flex text-xs font-bold tracking-wider space-x-2">
-    <p>
-      <time datetime={post.data.publishedDate.toISOString()}>
-        {
-          post.data.publishedDate.toLocaleDateString('en-us', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          })
-        }
-      </time>
-    </p>
-    <span>&middot;</span>
-    {post.data.tags.map((tag) => <a href={`/tags/${tag}`}>{`#${tag}`}</a>)}
+  <div class="flex justify-center px-4">
+    <div class="w-full max-w-sm md:max-w-2xl py-32">
+      <h1 class="text-2xl md:text-3xl font-bold pb-6">{post.data.title}</h1>
+      <div class="flex text-xs font-bold tracking-wider space-x-2">
+        <p>
+          <time datetime={post.data.publishedDate.toISOString()}>
+            {
+              post.data.publishedDate.toLocaleDateString('en-us', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })
+            }
+          </time>
+        </p>
+        <span>&middot;</span>
+        {post.data.tags.map((tag) => <a href={`/tags/${tag}`}>{`#${tag}`}</a>)}
+      </div>
+
+      <img src={post.data.image} alt={post.data.title} class="w-full object-cover object-center mt-20" />
+
+      <article class="prose prose-sm sm:prose-base prose-zinc prose-invert max-w-none mt-20">
+        <Content />
+      </article>
+    </div>
   </div>
-
-  <img src={post.data.image} alt={post.data.title} class="w-full object-cover object-center mt-20" />
-
-  <article class="prose prose-sm sm:prose-base prose-zinc prose-invert max-w-none mt-20">
-    <Content />
-  </article>
-
-  <!-- <div class="max-w-2xl mx-auto space-y-8">
-    <img src={post.data.image} alt={post.data.title} />
-  </div> -->
 </BaseLayout>

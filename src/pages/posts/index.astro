@@ -10,31 +10,35 @@ const posts = (
 ---
 
 <BaseLayout title="Posts">
-  <h1 class="text-2xl md:text-3xl font-bold mb-16">today I learned;</h1>
-  <div class="space-y-10">
-    {
-      posts.map((post) => (
-        <div>
-          <div class="flex text-xs font-bold tracking-wider space-x-2">
-            <p>
-              <time datetime={post.data.publishedDate.toISOString()}>
-                {post.data.publishedDate.toLocaleDateString('en-us', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </time>
-            </p>
-            <span>&middot;</span>
-            {post.data.tags.map((tag) => (
-              <a href={`/tags/${tag}`}>{`#${tag}`}</a>
-            ))}
-          </div>
-          <a href={`/posts/${post.slug}`}>
-            <h2 class="text-lg font-bold hover:underline mt-2">{post.data.title}</h2>
-          </a>
-        </div>
-      ))
-    }
+  <div class="flex justify-center px-4">
+    <div class="w-full max-w-sm md:max-w-2xl py-32">
+      <h1 class="text-2xl md:text-3xl font-bold mb-16">today I learned;</h1>
+      <div class="space-y-10">
+        {
+          posts.map((post) => (
+            <div>
+              <div class="flex text-xs font-bold tracking-wider space-x-2">
+                <p>
+                  <time datetime={post.data.publishedDate.toISOString()}>
+                    {post.data.publishedDate.toLocaleDateString('en-us', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </p>
+                <span>&middot;</span>
+                {post.data.tags.map((tag) => (
+                  <a href={`/tags/${tag}`}>{`#${tag}`}</a>
+                ))}
+              </div>
+              <a href={`/posts/${post.slug}`}>
+                <h2 class="text-lg font-bold hover:underline mt-2">{post.data.title}</h2>
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </BaseLayout>
