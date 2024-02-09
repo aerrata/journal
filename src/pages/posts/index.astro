@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content'
+
+const posts = (
+  await getCollection('posts', ({ data }) => {
+    return data.isDraft !== true
+  })
+).sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
+---
+
+ALL POSTS
+{posts.map((post) => <a href={`/posts/${post.slug}/`}>{post.data.title}</a>)}
