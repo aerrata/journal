@@ -1,16 +1,11 @@
 ---
 import '../styles/base.css'
+import Head from '../components/Head.astro'
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>aerrata</title>
-  </head>
-  <body class="font-sans antialiased bg-zinc-950 text-zinc-100 h-screen flex items-center justify-center">
+  <Head title="aerrata" />
+  <body class="font-sans antialiased bg-zinc-950 text-zinc-100 text-sm sm:text-base h-screen flex items-center justify-center">
     <h1 class="font-bold text-xl m-10">Aerrata</h1>
   </body>
 </html>

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
 
 const posts = (
   await getCollection('posts', ({ data }) => {
@@ -8,5 +9,16 @@ const posts = (
 ).sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
 ---
 
-ALL POSTS
-{posts.map((post) => <a href={`/posts/${post.slug}/`}>{post.data.title}</a>)}
+<BaseLayout title="Posts">
+  <ul class="list-decimal list-inside">
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/posts/${post.slug}/`} class="hover:underline font-bold">
+            {post.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
