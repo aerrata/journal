@@ -1,4 +1,5 @@
 ---
+import '../../styles/base.css'
 import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -15,4 +16,6 @@ const { Content } = await post.render()
 
 <h1>{post.data.title}</h1>
 
-<Content />
+<article class="prose prose-sm sm:prose-base prose-zinc mx-auto">
+  <Content />
+</article>

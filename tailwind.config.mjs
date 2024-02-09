@@ -8,7 +8,16 @@ export default {
       fontFamily: {
         sans: ['Mona Sans', ...defaultTheme.fontFamily.sans],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              'word-wrap': 'break-word',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
