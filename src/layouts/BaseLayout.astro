@@ -1,13 +1,19 @@
 ---
 import '../styles/base.css'
 import Head from '../components/Head.astro'
+import Navbar from '../components/Navbar.astro'
 
 const { title } = Astro.props
 ---
 
 <html lang="en">
   <Head title={title} />
-  <body class="font-sans antialiased bg-zinc-950 text-zinc-100 text-sm sm:text-base">
-    <slot />
+  <body class="font-sans antialiased bg-zinc-950 text-zinc-50 text-sm sm:text-base">
+    <div class="flex justify-center px-4">
+      <div class="w-full max-w-sm md:max-w-2xl py-32">
+        <Navbar />
+        <slot />
+      </div>
+    </div>
   </body>
 </html>

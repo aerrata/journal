@@ -13,4 +13,9 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },
+  markdown: {
+    shikiConfig: {
+      theme: 'min-dark',
+    },
+  },
 })
