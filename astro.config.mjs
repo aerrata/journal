@@ -10,9 +10,6 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
-  prefetch: {
-    prefetchAll: true,
-  },
   markdown: {
     shikiConfig: {
       theme: 'min-dark',
