@@ -1,0 +1,9 @@
+{
+  // "extends": "astro/jsconfigs/base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src//*"]
+    }
+  }
+}
