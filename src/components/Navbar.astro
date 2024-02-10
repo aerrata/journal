@@ -1,5 +1,8 @@
 ---
+import { Image } from 'astro:assets'
 import heckerImage from '@/assets/hecker.jpg'
+
+const currentPath = Astro.url.pathname
 ---
 
 <nav class="flex justify-center fixed top-0 left-0 right-0 z-50 px-4">
@@ -7,11 +10,11 @@ import heckerImage from '@/assets/hecker.jpg'
     <div class="flex items-center justify-between">
       <div>
         <a href="/">
-          <img src={heckerImage.src} alt="hecker" class="rounded-full h-10 w-10 animate-spin-slowest" />
+          <Image src={heckerImage} format="avif" alt="hecker" class="rounded-full h-10 w-10 animate-spin-slowest" />
         </a>
       </div>
       <div class="flex items-center">
-        <a href="/posts" class="font-semibold text-sm">Today I Learned;</a>
+        <a href="/posts" class:list={['font-semibold text-sm border-b-2 border-zinc-50', [currentPath.startsWith('/posts') ? 'border-zinc-50' : 'border-transparent']]}>Today I Learned;</a>
       </div>
     </div>
   </div>
