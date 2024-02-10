@@ -5,16 +5,16 @@ import heckerImage from '@/assets/hecker.jpg'
 const currentPath = Astro.url.pathname
 ---
 
-<nav class="flex justify-center fixed top-0 left-0 right-0 z-50 px-4">
-  <div class="w-full max-w-sm md:max-w-2xl lg:max-w-5xl py-12">
+<nav class="fixed left-0 right-0 top-0 z-50 flex justify-center px-4">
+  <div class="w-full max-w-sm py-12 md:max-w-2xl lg:max-w-5xl">
     <div class="flex items-center justify-between">
       <div>
         <a href="/">
-          <Image src={heckerImage} format="avif" alt="hecker" class="rounded-full h-10 w-10 animate-spin-slowest" />
+          <Image src={heckerImage} format="avif" alt="hecker" class="h-10 w-10 animate-spin-slowest rounded-full" />
         </a>
       </div>
       <div class="flex items-center">
-        <a href="/posts" class:list={['font-semibold text-sm border-b-2 border-dashed', [currentPath.startsWith('/posts') ? 'border-zinc-50' : 'border-transparent']]}>Today I Learned;</a>
+        <a href="/posts" class:list={['border-b-2 border-dashed text-sm font-semibold', [currentPath.startsWith('/posts') ? 'border-zinc-50' : 'border-transparent']]}>Today I Learned;</a>
       </div>
     </div>
   </div>
