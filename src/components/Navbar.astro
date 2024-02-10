@@ -1,8 +1,14 @@
+---
+import heckerImage from '@/assets/hecker.jpg'
+---
+
 <nav class="flex justify-center fixed top-0 left-0 right-0 z-50 px-4">
   <div class="w-full max-w-sm md:max-w-2xl lg:max-w-5xl py-12">
     <div class="flex items-center justify-between">
       <div>
-        <a href="/" class="font-bold text-rose-500">aerrata.</a>
+        <a href="/">
+          <img src={heckerImage.src} alt="hecker" class="rounded-full h-10 w-10" />
+        </a>
       </div>
       <div class="flex items-center">
         <a href="/posts" class="font-bold border-b-2 border-transparent">Today I Learned;</a>
