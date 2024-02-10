@@ -9,6 +9,9 @@ export default {
         sans: ['Geist Sans', ...defaultTheme.fontFamily.sans],
         mono: ['Geist Mono', ...defaultTheme.fontFamily.mono],
       },
+      animation: {
+        'spin-slowest': 'spin 30s linear infinite',
+      },
       typography: {
         DEFAULT: {
           css: {
