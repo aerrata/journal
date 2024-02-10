@@ -17,7 +17,7 @@ const posts = (
         {
           posts.map((post) => (
             <div>
-              <div class="flex text-xs sm:text-sm text-zinc-400 tracking-wider space-x-2">
+              <div class="flex text-xs md:text-sm text-zinc-400 tracking-wider space-x-2">
                 <p>
                   <time datetime={post.data.publishedDate.toISOString()}>
                     {post.data.publishedDate.toLocaleDateString('en-us', {
@@ -33,7 +33,9 @@ const posts = (
                 ))}
               </div>
               <a href={`/posts/${post.slug}`}>
-                <h2 class="text-lg font-bold hover:underline mt-2">{post.data.title}</h2>
+                <h2 class="text-lg font-bold hover:underline mt-2" transition:name={`post-${post.slug}`}>
+                  {post.data.title}
+                </h2>
               </a>
             </div>
           ))
