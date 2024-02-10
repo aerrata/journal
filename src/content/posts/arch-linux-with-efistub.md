@@ -5,7 +5,6 @@ tags: ['linux']
 image: https://images.unsplash.com/photo-1510944406431-1cf21ca0b134?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 publishedDate: Jul 08 2022
 # updatedDate:
-# isDraft:
 ---
 
 ### #1 Get into the EFI Shell

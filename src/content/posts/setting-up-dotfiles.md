@@ -5,7 +5,6 @@ tags: ['linux']
 image:
 publishedDate: Jan 20 2022
 # updatedDate:
-# isDraft:
 ---
 
 ### #1 Initial Setup

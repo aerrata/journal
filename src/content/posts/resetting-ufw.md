@@ -5,7 +5,6 @@ tags: ['linux']
 image:
 publishedDate: Jan 5 2024
 # updatedDate:
-# isDraft:
 ---
 
 ## Intro

@@ -5,7 +5,6 @@ tags: ['linux']
 image:
 publishedDate: Aug 12 2023
 # updatedDate:
-# isDraft:
 ---
 
 Setting up SSH aliases can make accessing your remote servers much simpler and quicker. Instead of remembering and typing out lengthy commands, you can create short, easy-to-remember aliases. Here's how to do it:

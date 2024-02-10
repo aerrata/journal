@@ -5,7 +5,6 @@ tags: ['laravel']
 image:
 publishedDate: Feb 10 2023
 # updatedDate:
-# isDraft:
 ---
 
 Virtual columns are columns that are not physically stored in the database but calculated on-the-fly.

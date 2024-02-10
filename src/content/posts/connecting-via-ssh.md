@@ -5,7 +5,6 @@ tags: ['linux']
 image:
 publishedDate: Oct 09 2023
 # updatedDate:
-# isDraft:
 ---
 
 ### #1 Checking for existing SSH keys

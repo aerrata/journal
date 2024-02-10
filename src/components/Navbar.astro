@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname
         </a>
       </div>
       <div class="flex items-center">
-        <a href="/posts" class:list={['border-b-2 border-dashed text-sm font-semibold', [currentPath.startsWith('/posts') ? 'border-zinc-50' : 'border-transparent']]}>Today I Learned;</a>
+        <a href="/posts" class:list={['border-b-2 text-sm font-semibold', [currentPath.startsWith('/posts') ? 'border-zinc-50' : 'border-transparent']]}>Today I Learned;</a>
       </div>
     </div>
   </div>
