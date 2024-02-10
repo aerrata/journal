@@ -17,7 +17,7 @@ const posts = (
         {
           posts.map((post) => (
             <div>
-              <div class="flex text-xs font-bold tracking-wider space-x-2">
+              <div class="flex text-xs sm:text-sm text-zinc-400 tracking-wider space-x-2">
                 <p>
                   <time datetime={post.data.publishedDate.toISOString()}>
                     {post.data.publishedDate.toLocaleDateString('en-us', {
