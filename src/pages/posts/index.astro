@@ -5,7 +5,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 const posts = (await getCollection('posts')).sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
 ---
 
-<BaseLayout title="Posts">
+<BaseLayout title="Today I Learned;">
   <div class="flex justify-center px-4">
     <div class="w-full max-w-sm py-32 md:max-w-2xl">
       <h1 class="mb-16 text-2xl font-bold md:text-3xl">Today I Learned;</h1>
