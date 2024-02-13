@@ -6,9 +6,9 @@ import Navbar from '@/components/Navbar.astro'
 const { title } = Astro.props
 ---
 
-<html lang="en">
+<html lang="en" class="dark">
   <Head title={title} />
-  <body class="bg-zinc-950 font-sans text-sm text-zinc-50 antialiased md:text-base">
+  <body>
     <Navbar />
     <slot />
   </body>
