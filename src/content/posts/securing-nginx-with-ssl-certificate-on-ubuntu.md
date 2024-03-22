@@ -49,7 +49,7 @@ sudo apt install nginx
 
 Navigate to the NGINX configuration directory. The main configuration file is typically located at `/etc/nginx/nginx.conf`, while server block configurations reside in `/etc/nginx/sites-available/`, open your sites config file, eg: `/etc/nginx/sites-available/foo.conf`.
 
-### Create Server Block Configuration
+### Update NGINX Server Block Configuration
 
 Edit the default server block configuration or create a new one for your Laravel application. Below is a sample configuration:
 
