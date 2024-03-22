@@ -13,11 +13,17 @@ Securing your Laravel application with SSL (Secure Sockets Layer) via NGINX on a
 
 ### Prepare Certificate Files
 
-Once obtained, you'll typically receive a certificate file (often with a `.crt` extension), a private key file (usually with a `.key` extension), and possibly an intermediate certificate file. Ensure you have these files readily accessible.
+Once obtained, you'll typically receive;
+
+1. Certificate file (often with a `.crt` extension)
+2. Private key file (usually with a `.key` extension)
+3. Intermediate certificate file (optional)
 
 ### Upload The Certificate Files
 
 Transfer the certificate files to your server. Common destinations for these files include `/etc/ssl/certs/` (for .cert file) and `/etc/ssl/private/` (for .key file).
+
+Copy the file to the server using `scp` command
 
 ```bash
 scp /path/to/your_certificate.crt /path/to/your_private_key.key user@host:/etc/ssl/
@@ -41,7 +47,7 @@ sudo apt install nginx
 
 ### Configure NGINX
 
-Navigate to the NGINX configuration directory. The main configuration file is typically located at `/etc/nginx/nginx.conf`, while server block configurations reside in `/etc/nginx/sites-available/`, open your sites config file, eg: `foo.conf`.
+Navigate to the NGINX configuration directory. The main configuration file is typically located at `/etc/nginx/nginx.conf`, while server block configurations reside in `/etc/nginx/sites-available/`, open your sites config file, eg: `/etc/nginx/sites-available/foo.conf`.
 
 ### Create Server Block Configuration
 
@@ -58,11 +64,11 @@ server {
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name foo.com;
-    root /var/www/foo/public;
+    server_name foo.com; # Update this
+    root /var/www/foo/public; # Update this
 
-    ssl_certificate /etc/ssl/certs/your_certificate.crt;
-    ssl_certificate_key /etc/ssl/private/your_private_key.key;
+    ssl_certificate /etc/ssl/certs/your_certificate.crt; # Update this
+    ssl_certificate_key /etc/ssl/private/your_private_key.key; # Update this
 
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-Content-Type-Options "nosniff";
@@ -81,7 +87,7 @@ server {
     error_page 404 /index.php;
 
     location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock; # Update this
         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         include fastcgi_params;
     }
