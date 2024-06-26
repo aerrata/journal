@@ -1,43 +1,41 @@
 ---
-title: Resetting UFW
-description: Reset your UFW settings
+title: Configure UFW
+description: Configure your UFW settings
 tags: ['linux']
 image:
 publishedDate: Jan 5 2024
 # updatedDate:
 ---
 
-## Intro
-
-Ubuntu 16.x and 18.x use `ufw` (Uncomplicated Firewall) by default.
+Ubuntu use `ufw` (Uncomplicated Firewall) by default.
 
 If you encounter SSH login issues or can't access your website or application, your server firewall might be causing the problem. Resetting it to default and allowing connections might helps.
 
-### #1: Disable UFW
+### Disable UFW
 
 ```shell
 sudo ufw --force disable
 ```
 
-### #2: Reset UFW
+### Reset UFW
 
 ```shell
 sudo ufw --force reset
 ```
 
-### #3: Deny Incoming Connections
+### Deny Incoming Connections
 
 ```shell
 sudo ufw default deny incoming
 ```
 
-### #4: Allow Outgoing Connections
+### Allow Outgoing Connections
 
 ```shell
 sudo ufw default allow outgoing
 ```
 
-### #5: Define Allowed Ports
+### Define Allowed Ports
 
 - SSH `sudo ufw allow 22/tcp`
 - HTTP `sudo ufw allow 80/tcp`
@@ -47,7 +45,7 @@ sudo ufw default allow outgoing
 - PostgreSQL: `sudo ufw allow 5432/tcp`
 - Redis: `sudo ufw allow 6379/tcp`
 
-### #6: Enable UFW
+### Enable UFW
 
 ```shell
 sudo ufw --force enable

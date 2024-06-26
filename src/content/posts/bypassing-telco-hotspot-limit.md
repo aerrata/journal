@@ -1,47 +1,39 @@
 ---
 title: Bypass Telco Hotspot Limit
-description: Set up SSH aliases for easier remote server access
+description: Screw Up Your Telco
 tags: ['linux']
 image:
 publishedDate: Aug 12 2023
 # updatedDate:
 ---
 
-Setting up SSH aliases can make accessing your remote servers much simpler and quicker. Instead of remembering and typing out lengthy commands, you can create short, easy-to-remember aliases. Here's how to do it:
+### Setup
 
-### Step 1: Open your SSH configuration file
+First, connect your wifi
 
-First, open your SSH configuration file. This file is typically located at `~/.ssh/config`. You can use any text editor to open it, for example:
+#### Windows
 
-```shell
-nano ~/.ssh/config
-```
-
-### Step 2: Add your SSH aliases
-
-In the SSH configuration file, add aliases for your remote servers. Each alias should include the hostname or IP address of the server, the username you use to connect, and any other relevant configuration options. Here's an example:
-
-```
-Host phone
-    HostName 192.168.1.100
-    User username
-    Port 2222
-```
-
-Replace with your actual information.
-
-### Step 3: Save and close the file
-
-After adding your aliases, save the SSH configuration file and close the text editor.
-
-### Step 4: Test your aliases
-
-To test your aliases, simply use them in place of the usual SSH command.
+Then open your Command Prompt as Administrator, run the following
 
 ```shell
-ssh phone
+netsh int ipv4 set glob defaultcurhoplimit=65
+netsh int ipv6 set glob defaultcurhoplimit=65
 ```
 
-This will connect you to the remote server using the settings specified in your SSH configuration file.
+#### MacOS
 
-Setting up SSH aliases can save you time and effort when managing multiple remote servers. Once configured, you can easily connect to your servers using short, memorable aliases.
+Then open your Terminal, run the following
+
+```shell
+sysctl net.inet.ip.ttl=65
+```
+
+> Default TTL and Hop Limit values vary between different operating systems 
+> 1. Linux kernel 2.4 (circa 2001): 255
+> 2. Linux kernel 4.10 (2015): 64
+> 3. Windows XP (2001): 128
+> 4. Windows 10 (2015): 128
+> 5. Windows Server 2008: 128
+> 6. Windows Server 2019 (2018): 128
+> 7. MacOS (2001): 64
+

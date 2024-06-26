@@ -7,7 +7,7 @@ publishedDate: Oct 09 2023
 # updatedDate:
 ---
 
-### #1 Checking for existing SSH keys
+### Checking for existing SSH keys
 
 Check the directory listing to see if you already have a public SSH key.
 
@@ -15,7 +15,7 @@ Check the directory listing to see if you already have a public SSH key.
 ls -al ~/.ssh
 ```
 
-### #2 Generating a new SSH key and adding it to the ssh-agent
+### Generating a new SSH key and adding it to the ssh-agent
 
 After you've checked for existing SSH keys, you can generate a new SSH key to use for authentication, then add it to the ssh-agent.
 
@@ -23,7 +23,7 @@ After you've checked for existing SSH keys, you can generate a new SSH key to us
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-### #3 Adding your SSH key to the ssh-agent
+### Adding your SSH key to the ssh-agent
 
 Start the ssh-agent in the background
 
@@ -45,4 +45,14 @@ Add your SSH private key to the ssh-agent
 ssh-add ~/.ssh/id_ed25519
 ```
 
-### #4 Add your new SSH key to the server
+### Add your new SSH key to the server
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Then select and copy the contents of the id_ed25519.pub file displayed in the terminal to your clipboard.
+
+Register the new SSH key on your server or git client settings page. This may differ based on what server or git client that you use.
+
+That's it, you can verify by simply connect to the server or git client.
