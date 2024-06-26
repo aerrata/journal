@@ -9,7 +9,19 @@ publishedDate: June 2 2024
 
 ### Initial Setup
 
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo apt-cache policy <PACKAGE> # Check the version of installable packages
+```
+
 #### Create a Non Root User
+
+```bash
+adduser foo
+usermod -aG sudo foo
+```
 
 #### Setup ZSH
 
@@ -24,7 +36,15 @@ nano ~/.zshrc
 source ~/.zshrc
 ```
 
-`alias pa="php artisan"`
+```
+...
+
+echo "Server @ $(hostname -I)"
+
+alias pa="php artisan"
+
+...
+```
 
 #### Install Essential Tools & Utility
 
@@ -38,6 +58,7 @@ sudo apt install curl git zsh ranger neofetch
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.3 php8.3-fpm php8.3-mysql php8.3-xml php8.3-mbstring php8.3-curl php8.3-zip php8.3-bcmath php8.3-gd
+sudo update-alternatives --config php # In case you have multiple PHP versions
 ```
 
 ```bash
@@ -50,6 +71,14 @@ sudo apt install composer
 sudo apt install mysql-server
 sudo mysql_secure_installation
 ```
+
+```
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON 'database.*' TO 'user'@'%';
+FLUSH PRIVILEGES;
+```
+
+MySQL config file located at `/etc/mysql/mysql.conf.d/mysqld.cnf`
 
 ### Setup NGINX
 
@@ -92,6 +121,7 @@ composer install
 npm ci
 npm run build
 cp .env.example .env
+# Update your .env with proper info and credentials
 pa key:generate
 pa migrate:fresh --seed
 
