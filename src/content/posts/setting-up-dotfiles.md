@@ -4,7 +4,7 @@ description: By using bare git repository
 tags: ['linux']
 image:
 publishedDate: Jan 20 2022
-# updatedDate:
+updatedDate: June 2 2024
 ---
 
 Easily keep track your machine configuration settings with dotfiles

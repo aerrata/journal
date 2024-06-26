@@ -4,7 +4,7 @@ description: Configure your UFW settings
 tags: ['linux']
 image:
 publishedDate: Jan 5 2024
-# updatedDate:
+updatedDate: June 2 2024
 ---
 
 Ubuntu use `ufw` (Uncomplicated Firewall) by default.

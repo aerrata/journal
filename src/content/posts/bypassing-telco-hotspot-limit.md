@@ -4,7 +4,7 @@ description: Screw Up Your Telco
 tags: ['linux']
 image:
 publishedDate: Aug 12 2023
-# updatedDate:
+updatedDate: June 2 2024
 ---
 
 ### Setup

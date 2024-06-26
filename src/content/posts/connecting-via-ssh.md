@@ -4,7 +4,7 @@ description: Set up SSH to connect to a Linux server
 tags: ['linux']
 image:
 publishedDate: Oct 09 2023
-# updatedDate:
+updatedDate: June 2 2024
 ---
 
 ### Checking for existing SSH keys

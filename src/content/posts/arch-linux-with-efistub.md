@@ -4,14 +4,16 @@ description: Boot using EFISTUB instead of GRUB bootloader
 tags: ['linux']
 image: https://images.unsplash.com/photo-1510944406431-1cf21ca0b134?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 publishedDate: Jul 08 2022
-# updatedDate:
+updatedDate: June 2 2024
 ---
 
-### #1 Get into the EFI Shell
+Why use the ugly GRUB bootloader when you can by pass it? Use the native EFISTUB instead
+
+### Get into the EFI Shell
 
 In the Arch Linux boot menu, choose `UEFI Shell x86_64 v2` to get into the EFI Shell, then press `ESC` to skip the startup.nsh
 
-### #2 Find the boot partition
+### Find the boot partition
 
 Issue `map` to see which partition the EFI has recognized, the partition name is something like fs0, fs1, fs2 etc
 
@@ -19,7 +21,7 @@ Use `ls fsX:` (with X is the fs# from the mapping result)
 
 What you’re trying to find here is the partition which contains the kernel files (/boot), it should have the `vmlinuz` and `initramfs`
 
-### #3 Add new boot entry
+### Add new boot entry
 
 Add a new boot entry at `0` points to vmlinuz-linux (the `0` is your boot entry)
 
@@ -27,7 +29,7 @@ Add a new boot entry at `0` points to vmlinuz-linux (the `0` is your boot entry)
 bcfg boot add 0 fs0:\vmlinuz-linux "Arch Linux"
 ```
 
-### #4 Add cmdline file
+### Add cmdline file
 
 Create a new text file to store the cmdline for the kernel
 
@@ -35,7 +37,7 @@ Create a new text file to store the cmdline for the kernel
 edit fs0:\cmdline.txt
 ```
 
-### #5 Add your necessary kernel cmdline, here is an example
+### Add your necessary kernel cmdline, here is an example
 
 ```
 root=PARTUUID=0faee253-da44-9e4d-88ce-4658d8320486 rw video=SVIDEO-1:d quiet loglevel=1 vga=current rd.udev.log_priority=1 rd.systemd.show_status=false systemd.show_status=false nowatchdog module_blacklist=iTCO_wdt printk.devkmsg=on i915.fastboot=1 initrd=\intel-ucode.img initrd=\initramfs-linux.img
@@ -49,13 +51,13 @@ If you use an Intel processor, you can install the `intel-ucode` package with pa
 
 Press `F2` to save, `F3` to exit
 
-### #6 Add the cmdline to the boot entry `0`
+### Add the cmdline to the boot entry `0`
 
 ```
 bcfg boot -opt 0 fs0:\cmdline.txt
 ```
 
-### #7 Reboot your machine
+### Reboot your machine
 
 ```
 reset
