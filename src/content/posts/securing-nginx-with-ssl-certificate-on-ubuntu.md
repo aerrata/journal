@@ -1,5 +1,5 @@
 ---
-title: Securing Laravel app with NGINX SSL on Ubuntu
+title: Securing Laravel App with NGINX SSL on Ubuntu
 description: Installing SSL certificate to secure your Laravel app.
 tags: ['linux', 'nginx']
 image:
