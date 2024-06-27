@@ -118,4 +118,4 @@ sudo systemctl restart nginx
 
 ### Verify
 
-Verify by accessing your site using `https://foo.com` in a web browser.
+Verify by accessing your site using `https://foo.com` in the web browser.

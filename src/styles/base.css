@@ -46,7 +46,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans text-sm antialiased md:text-base;
+    @apply bg-background font-sans text-sm text-foreground antialiased md:text-base;
   }
 }
 
