@@ -9,8 +9,9 @@ const currentPath = Astro.url.pathname
   <div class="w-full max-w-full py-12 md:max-w-2xl lg:max-w-5xl">
     <div class="flex items-center justify-between">
       <div>
-        <a href="/">
-          <Image src={heckerImage} format="avif" alt="hecker" class="h-12 w-12 animate-spin-slowest rounded-full" />
+        <a href="/" class="relative">
+          <Image src={heckerImage} format="avif" alt="hecker" class="absolute inset-0 h-10 w-10 ‰ rounded-full blur-lg transition duration-200 md:h-14 md:w-14" />
+          <Image src={heckerImage} format="avif" alt="hecker" class=" h-10 w-10 ‰ rounded-full md:h-14 md:w-14" />
         </a>
       </div>
       <div class="flex items-center">
