@@ -17,7 +17,7 @@ const { Content } = await post.render()
 
 <BaseLayout title={post.data.title}>
   <div class="flex justify-center px-4">
-    <div class="w-full max-w-sm py-32 md:max-w-2xl">
+    <div class="w-full max-w-full py-32 md:max-w-2xl">
       <h1 class="pb-6 text-2xl font-bold md:text-3xl" transition:name={`post-${post.slug}`}>{post.data.title}</h1>
       <div class="flex space-x-2 text-xs tracking-wider text-muted-foreground md:text-sm">
         <p>

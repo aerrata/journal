@@ -61,6 +61,10 @@ sudo apt install php8.3 php8.3-fpm php8.3-mysql php8.3-xml php8.3-mbstring php8.
 sudo update-alternatives --config php # In case you have multiple PHP versions
 ```
 
+```mysql
+mysql -u user -p -D database < database.sql
+```
+
 ```bash
 sudo apt install composer
 ```
@@ -70,23 +74,25 @@ sudo apt install composer
 ```bash
 sudo apt install mysql-server
 sudo mysql_secure_installation
+sudo systemctl restart mysql
 ```
 
 ```sql
 CREATE USER 'user'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON 'database.*' TO 'user'@'%';
+GRANT ALL PRIVILEGES ON database.* TO 'user'@'%';
 FLUSH PRIVILEGES;
 ```
 
 MySQL config file located at `/etc/mysql/mysql.conf.d/mysqld.cnf`
 
+```sql
+mysql -u user -p -h ip
+```
+
 ### Setup NGINX
 
 ```bash
 sudo nano /etc/nginx/sites-available/laravel
-sudo ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
 ```
 
 ```nginx
@@ -126,6 +132,13 @@ server {
         deny all;
     }
 }
+```
+
+```bash
+sudo ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl enable nginx
+sudo systemctl restart nginx
 ```
 
 ### Install Node.js
