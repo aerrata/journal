@@ -37,11 +37,7 @@ ssh foo@ip
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-```bash
 nano ~/.zshrc
-source ~/.zshrc
 ```
 
 ```
@@ -50,8 +46,10 @@ source ~/.zshrc
 echo "Server @ $(hostname -I)"
 
 alias pa="php artisan"
+```
 
-...
+```bash
+source ~/.zshrc
 ```
 
 #### Install Essential Tools & Utility
