@@ -13,14 +13,22 @@ publishedDate: June 2 2024
 sudo apt update
 sudo apt upgrade
 sudo apt dist-upgrade
-sudo apt-cache policy {package} # Check the version of installable packages
 ```
 
 #### Create a Non Root User
 
+Using `root` user is discouraged, create a new normal user instead.
+
 ```bash
 adduser foo
 usermod -aG sudo foo
+su foo # Switch to user 'foo'
+```
+
+So, next time you login to the server like this;
+
+```bash
+ssh foo@ip
 ```
 
 #### Setup ZSH [^1]
@@ -201,6 +209,12 @@ pa migrate:fresh --seed
 ### Verify
 
 Verify by accessing your site using domain or ip address in the web browser.
+
+### Common Linux Commands
+
+```bash
+sudo apt-cache policy {package} # Check the version of installable packages
+```
 
 ### Troubleshooting
 
