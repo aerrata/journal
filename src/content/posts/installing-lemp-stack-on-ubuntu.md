@@ -101,6 +101,13 @@ server {
     listen 80;
     listen [::]:80;
     server_name example.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name example.com;
     root /srv/example.com/public;
 
     # ssl_certificate /etc/ssl/certs/cert_bundle.crt; # Update this
