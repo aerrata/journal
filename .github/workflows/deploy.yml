@@ -42,7 +42,7 @@ jobs:
       - name: Deploying to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           external_repository: aerrata/aerrata.github.io
           publish_branch: main
           publish_dir: ./dist

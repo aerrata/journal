@@ -181,7 +181,9 @@ bun install --frozen-lockfile
 ### Install Laravel App Source Code
 
 ```bash
+cd
 git clone https://user@bitbucket.org/org/laravel.git laravel
+sudo mv laravel /var/www
 ```
 
 #### Directory Permissions
