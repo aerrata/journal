@@ -1,5 +1,5 @@
 ---
-title: Connecting To A Server via SSH
+title: Setup SSH
 description: Set up SSH to connect to a Linux server
 tags: ['linux']
 image:
