@@ -212,6 +212,7 @@ Verify by accessing your site using domain or ip address in the web browser.
 
 ```bash
 sudo apt-cache policy {package} # Check the version of installable packages
+lsb_release -a # Check Ubuntu release version
 ```
 
 ### Troubleshooting
