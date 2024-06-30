@@ -35,7 +35,10 @@ const { Content } = await post.render()
         {post.data.tags.map((tag) => <a href={`/tags/${tag}`}>{`#${tag}`}</a>)}
       </div>
 
-      {post.data.image && <Image src={post.data.image} alt={post.data.title} format="avif" height={300} width={300} class="mt-20 w-full object-cover object-center" />}
+      <div class="relative mt-20">
+        {post.data.image && <Image src={post.data.image} alt={post.data.title} format="avif" height={300} width={300} class="absolute inset-0 w-full object-cover object-center blur-xl" />}
+        {post.data.image && <Image src={post.data.image} alt={post.data.title} format="avif" height={300} width={300} class="relative mt-20 w-full object-cover object-center" />}
+      </div>
 
       <article class="prose prose-sm prose-foreground mt-20 max-w-none md:prose-base prose-code:text-xs md:prose-code:text-sm">
         <Content />
