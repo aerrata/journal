@@ -113,7 +113,7 @@ sudo ufw allow 'Nginx Full'
 To secure your site with HTTPS, you can use Let's Encrypt to obtain an SSL certificate:
 
 ```bash
-sudo apt-get install certbot python3-certbot-nginx
+sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx -d example.com
 ```
 
