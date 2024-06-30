@@ -7,7 +7,7 @@ publishedDate: Mar 22 2024
 # updatedDate:
 ---
 
-#### Instal Node.js via NVM [^1]
+### Install Node.js via NVM [^1]
 
 [^1]: [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
 
@@ -36,10 +36,9 @@ cd
 git clone https://user@bitbucket.org/org/nuxt-app.git nuxt-app
 sudo mv nuxt-app /var/www
 cd /var/www/nuxt-app
-nano .env
 ```
 
-Add this environment variables in your `.env` file
+Add this to your application environment variables in your `.env` file
 
 ```
 HOST=0.0.0.0
@@ -51,7 +50,7 @@ npm ci
 npm run build
 ```
 
-Create a new `ecosystem.config.cjs` file in yor project root directory. You should commit this file.
+Create a new `ecosystem.config.cjs` file in your project root directory. You should commit this file.
 
 ```js
 module.exports = {
