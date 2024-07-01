@@ -7,46 +7,86 @@ publishedDate: Jan 5 2024
 updatedDate: June 2 2024
 ---
 
-Ubuntu use `ufw` (Uncomplicated Firewall) by default.
+Uncomplicated Firewall (UFW) is a user-friendly interface for managing iptables firewall rules. Below is a cheat sheet of common UFW commands to quickly set up and manage your firewall.
 
-If you encounter SSH login issues or can't access your website or application, your server firewall might be causing the problem. Resetting it to default and allowing connections might helps.
+### Enable UFW
 
-### Disable UFW
-
-```shell
-sudo ufw --force disable
+```sh
+# Enable UFW
+sudo ufw --force enable
 ```
 
-### Reset UFW
+### Disable and Reset UFW
 
-```shell
+```sh
+# Disable UFW
+sudo ufw --force disable
+
+# Reset UFW to default settings
 sudo ufw --force reset
 ```
 
-### Deny Incoming Connections
+### Default Policies
 
-```shell
+```sh
+# Deny all incoming connections by default
 sudo ufw default deny incoming
-```
 
-### Allow Outgoing Connections
-
-```shell
+# Allow all outgoing connections by default
 sudo ufw default allow outgoing
 ```
 
 ### Define Allowed Ports
 
-- SSH `sudo ufw allow 22/tcp`
-- HTTP `sudo ufw allow 80/tcp`
-- HTTPS `sudo ufw allow 443/tcp`
-- MongoDB: `sudo ufw allow 27017/tcp`
-- MySQL: `sudo ufw allow 3306/tcp`
-- PostgreSQL: `sudo ufw allow 5432/tcp`
-- Redis: `sudo ufw allow 6379/tcp`
+```sh
+# Allow incoming connections on port 22 (SSH)
+sudo ufw allow 22/tcp
 
-### Enable UFW
+# Allow incoming connections on port 80 (HTTP)
+sudo ufw allow 80/tcp
 
-```shell
-sudo ufw --force enable
+# Allow incoming connections on port 443 (HTTPS)
+sudo ufw allow 443/tcp
+
+# Allow incoming connections on port 27017 (MongoDB)
+sudo ufw allow 27017/tcp
+
+# Allow incoming connections on port 3306 (MySQL)
+sudo ufw allow 3306/tcp
+
+# Allow incoming connections on port 5432 (PostgreSQL)
+sudo ufw allow 5432/tcp
+
+# Allow incoming connections on port 6379 (Redis)
+sudo ufw allow 6379/tcp
 ```
+
+### Common UFW Commands
+
+```sh
+# Check UFW status
+sudo ufw status
+
+# Check detailed status including rules
+sudo ufw status verbose
+
+# Allow incoming connections from a specific IP on port 3306 (MySQL)
+sudo ufw allow from 192.168.1.100 to any port 3306
+
+# Deny all incoming connections from a specific IP
+sudo ufw deny from 192.168.1.100
+
+# Monitor UFW logs
+sudo tail -f /var/log/ufw.log
+
+# Reload UFW to apply changes without disabling
+sudo ufw reload
+```
+
+### Tips
+
+- Always allow SSH before enabling UFW to prevent locking yourself out.
+- Use numbered rules for easier management of multiple rules.
+- Regularly monitor UFW logs to ensure no unauthorized access attempts.
+
+This cheat sheet provides a quick reference to set up and manage your firewall with UFW. For detailed documentation, visit the [official UFW documentation](https://help.ubuntu.com/community/UFW).

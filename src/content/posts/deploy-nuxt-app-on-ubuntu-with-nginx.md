@@ -1,13 +1,13 @@
 ---
-title: Serve Nuxt App on Ubuntu with Nginx
+title: Deploy Nuxt App on Ubuntu with Nginx
 description: Use Nginx to server your Nuxt app
-tags: ['linux', 'nginx', 'pm2', 'nuxt']
+tags: ['linux', 'nginx', 'pm2', 'nuxtjs']
 image:
 publishedDate: June 30 2024
 # updatedDate:
 ---
 
-### Install Node.js via NVM [^1]
+### Install Node.js [^1]
 
 [^1]: [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
 
@@ -38,13 +38,6 @@ sudo mv nuxt-app /var/www
 cd /var/www/nuxt-app
 ```
 
-Add this to your application environment variables in your `.env` file
-
-```
-HOST=0.0.0.0
-PORT=3000
-```
-
 ```bash
 npm ci
 npm run build
@@ -61,6 +54,10 @@ module.exports = {
       exec_mode: 'cluster',
       instances: 'max',
       script: './.output/server/index.mjs',
+      env: {
+        "NODE_ENV": "development",
+        // Add your env variables here
+      }
     },
   ],
 }
