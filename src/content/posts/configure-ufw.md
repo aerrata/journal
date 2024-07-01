@@ -1,4 +1,3 @@
-```markdown
 ---
 title: Configure UFW
 description: Configure your UFW settings
