@@ -8,7 +8,7 @@ publishedDate: Jan 5 2024
 updatedDate: June 2 2024
 ---
 
-Uncomplicated Firewall (UFW) is a user-friendly interface for managing iptables firewall rules.
+Uncomplicated Firewall (UFW) is a user-friendly interface for managing firewall rules.
 
 ### Enable UFW
 
