@@ -9,13 +9,23 @@ publishedDate: June 2 2024
 
 ### Initial Setup
 
+#### Switch to `root` user
+
+If you are not switched yet, run;
+
 ```bash
-sudo apt update
-sudo apt upgrade
-sudo apt dist-upgrade
+su -
 ```
 
-#### Create a Non Root User
+#### Update system
+
+```bash
+apt update
+apt upgrade
+apt dist-upgrade
+```
+
+#### Create a Non `root` User
 
 Using `root` user is discouraged, create a new normal user instead.
 
@@ -42,7 +52,6 @@ nano ~/.zshrc
 
 ```
 ...
-
 echo "Server @ $(hostname -I)"
 
 alias pa="php artisan"
@@ -153,6 +162,8 @@ sudo ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl enable nginx
 sudo systemctl restart nginx
+sudo tail -f /var/log/nginx/error.log # Check for errors
+sudo tail -f /var/log/nginx/access.log # Check for errors
 ```
 
 ### Install Node.js
@@ -219,4 +230,20 @@ lsb_release -a # Check Ubuntu release version
 
 ### Troubleshooting
 
+#### MySQL Error
+
 1. `ERROR 1227 (42000) at line ...: Access denied; you need (at least one of) the SUPER privilege(s) for this operation`
+
+#### Nginx Error
+
+1. `[emerg] socket() [::]:80 failed (97: Address family not supported by protocol)`
+
+In `/etc/nginx/sites-enabled/default` file;
+
+```nginx
+...
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server; # Comment this line
+...
+```

@@ -70,6 +70,12 @@ pm2 startup systemd # Ensure to start the daemon on reboot
 pm2 list # See all processes
 ```
 
+If you update the code, just reload pm2;
+
+```bash
+pm2 reload ecosystem.config.cjs
+```
+
 ### Setup NGINX
 
 ```bash
