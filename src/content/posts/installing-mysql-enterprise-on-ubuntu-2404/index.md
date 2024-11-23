@@ -17,8 +17,8 @@ MySQL Enterprise packages are not available in Ubuntu's default repositories. Yo
 
 ### Step 1: Download the wget script
 
-1. Visit the [Oracle Software Delivery Cloud](https://edelivery.oracle.com/osdc/faces/SoftwareDelivery) page.
-2. Log in with your Oracle account credentials (required for Enterprise editions).
+1. Visit the [Oracle Software Delivery Cloud](https://edelivery.oracle.com/osdc/faces/SoftwareDelivery) page
+2. Log in with your Oracle account credentials
 3. Get the wget downloader script (refer screenshots below)
 
 TO BE CONTINUE
