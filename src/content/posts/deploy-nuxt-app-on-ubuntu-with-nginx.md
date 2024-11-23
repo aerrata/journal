@@ -11,7 +11,7 @@ publishedDate: June 30 2024
 
 [^1]: [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
 
-```bash
+```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 NODE_VERSION=22
@@ -25,20 +25,20 @@ node -v
 
 PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
 
-```bash
+```shell
 sudo npm install -g pm2
 ```
 
 ### Install Nuxt App
 
-```bash
+```shell
 cd
 git clone https://user@bitbucket.org/org/nuxt-app.git nuxt-app
 sudo mv nuxt-app /var/www
 cd /var/www/nuxt-app
 ```
 
-```bash
+```shell
 npm ci
 npm run build
 ```
@@ -63,7 +63,7 @@ module.exports = {
 }
 ```
 
-```bash
+```shell
 pm2 start ecosystem.config.cjs
 pm2 save # Save the process lists
 pm2 startup systemd # Ensure to start the daemon on reboot
@@ -72,13 +72,13 @@ pm2 list # See all processes
 
 If you update the code, just reload pm2;
 
-```bash
+```shell
 pm2 reload ecosystem.config.cjs
 ```
 
 ### Setup NGINX
 
-```bash
+```shell
 sudo apt install nginx
 sudo nano /etc/nginx/sites-available/nuxt-app
 ```
@@ -99,7 +99,7 @@ server {
 }
 ```
 
-```bash
+```shell
 sudo ln -s /etc/nginx/sites-available/nuxt-app /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
@@ -107,7 +107,7 @@ sudo systemctl restart nginx
 
 ### Setup Firewall
 
-```bash
+```shell
 sudo ufw allow 'Nginx Full'
 ```
 
@@ -115,7 +115,7 @@ sudo ufw allow 'Nginx Full'
 
 To secure your site with HTTPS, you can use Let's Encrypt to obtain an SSL certificate:
 
-```bash
+```shell
 sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx -d example.com
 ```

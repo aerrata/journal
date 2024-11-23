@@ -13,7 +13,7 @@ Securing your Laravel application with SSL (Secure Sockets Layer) via NGINX on a
 
 If NGINX isn't already installed on your Ubuntu server, install it via the package manager.
 
-```bash
+```shell
 sudo apt update
 sudo apt install nginx
 ```
@@ -30,13 +30,13 @@ Transfer the certificate files to your server. Common destinations for these fil
 
 Copy the file to the server using `scp` command
 
-```bash
+```shell
 scp  /path/to/your_certificate.crt /path/to/your_intermediate_certificate.crt /path/to/your_private_key.key user@host:/etc/ssl/
 ```
 
 Next, move the files to the specified directory
 
-```bash
+```shell
 mv /etc/ssl/your_certificate.key /etc/ssl/your_intermediate_certificate.key /etc/ssl/certs/
 mv /etc/ssl/your_private_key.key /etc/ssl/private/
 ```
@@ -45,7 +45,7 @@ mv /etc/ssl/your_private_key.key /etc/ssl/private/
 
 The intermediate certificate (sometimes referred to as the chain certificate or CA bundle) should be included along with your server certificate in the NGINX configuration. This ensures that clients can properly validate the SSL certificate chain.
 
-```bash
+```shell
 cat your_certificate.crt your_intermediate_certificate.crt > cert_bundle.crt
 ```
 
@@ -104,7 +104,7 @@ server {
 
 Before restarting NGINX, validate the configuration for syntax errors:
 
-```bash
+```shell
 sudo nginx -t
 ```
 
@@ -112,7 +112,7 @@ sudo nginx -t
 
 If the test is successful, restart NGINX to apply the changes:
 
-```bash
+```shell
 sudo systemctl restart nginx
 ```
 

@@ -47,7 +47,7 @@ ssh-add ~/.ssh/id_ed25519
 
 ### Add your new SSH key to the server
 
-```bash
+```shell
 cat ~/.ssh/id_ed25519.pub
 ```
 

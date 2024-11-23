@@ -13,13 +13,13 @@ publishedDate: June 2 2024
 
 If you are not switched yet, run;
 
-```bash
+```shell
 su -
 ```
 
 #### Update system
 
-```bash
+```shell
 apt update
 apt upgrade
 apt dist-upgrade
@@ -29,7 +29,7 @@ apt dist-upgrade
 
 Using `root` user is discouraged, create a new normal user instead.
 
-```bash
+```shell
 adduser foo
 usermod -aG sudo foo
 su foo # Switch to user 'foo'
@@ -37,7 +37,7 @@ su foo # Switch to user 'foo'
 
 So, next time you login to the server like this;
 
-```bash
+```shell
 ssh foo@ip
 ```
 
@@ -45,7 +45,7 @@ ssh foo@ip
 
 [^1]: [https://github.com/ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 
-```bash
+```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 nano ~/.zshrc
 ```
@@ -57,19 +57,19 @@ echo "Server @ $(hostname -I)"
 alias pa="php artisan"
 ```
 
-```bash
+```shell
 source ~/.zshrc
 ```
 
 #### Install Essential Tools & Utility
 
-```bash
+```shell
 sudo apt install curl git zsh ranger neofetch
 ```
 
 ### Install PHP & Composer
 
-```bash
+```shell
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 PHP_VERSION=8.3
@@ -77,13 +77,13 @@ sudo apt install php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql php$P
 sudo update-alternatives --config php # Switch PHP version, in case you have multiple versions
 ```
 
-```bash
+```shell
 sudo apt install composer
 ```
 
 ### Installing MySQL
 
-```bash
+```shell
 sudo apt install mysql-server
 sudo mysql_secure_installation
 sudo systemctl restart mysql
@@ -107,7 +107,7 @@ mysql -u user -p -h ip
 
 ### Setup NGINX
 
-```bash
+```shell
 sudo nano /etc/nginx/sites-available/laravel
 ```
 
@@ -157,7 +157,7 @@ server {
 }
 ```
 
-```bash
+```shell
 sudo ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl enable nginx
@@ -172,7 +172,7 @@ sudo tail -f /var/log/nginx/access.log # Check for errors
 
 [^2]: [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
 
-```bash
+```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 NODE_VERSION=22
@@ -184,14 +184,14 @@ node -v
 
 [^3]: [https://bun.sh/docs/installation](https://bun.sh/docs/installation)
 
-```bash
+```shell
 curl -fsSL https://bun.sh/install | bash
 bun install --frozen-lockfile
 ```
 
 ### Install Laravel App Source Code
 
-```bash
+```shell
 cd
 git clone https://user@bitbucket.org/org/laravel.git laravel
 sudo mv laravel /var/www
@@ -201,13 +201,13 @@ sudo mv laravel /var/www
 
 Laravel will need to write to the bootstrap/cache and storage directories, so you should ensure the web server process owner has permission to write to these directories.
 
-```bash
+```shell
 sudo chown -R foo:foo /var/www/laravel
 sudo chmod -R 755 /var/www/laravel
 sudo chown -R www-data:www-data /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 ```
 
-```bash
+```shell
 composer install
 npm ci
 npm run build
@@ -223,7 +223,7 @@ Verify by accessing your site using domain or ip address in the web browser.
 
 ### Common Linux Commands
 
-```bash
+```shell
 sudo apt-cache policy {package} # Check the version of installable packages
 lsb_release -a # Check Ubuntu release version
 ```
