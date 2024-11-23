@@ -13,16 +13,19 @@ First, connect your wifi
 
 #### Windows
 
-Then open your Command Prompt as Administrator, run the following
+Open your Command Prompt as Administrator, run the following
 
 ```shell
 netsh int ipv4 set glob defaultcurhoplimit=65
+```
+
+```shell
 netsh int ipv6 set glob defaultcurhoplimit=65
 ```
 
 #### MacOS
 
-Then open your Terminal, run the following
+Open your Terminal, run the following
 
 ```shell
 sysctl net.inet.ip.ttl=65
