@@ -8,7 +8,6 @@ updatedDate: June 2 2024
 ---
 
 Easily track and synchronize your machine's configuration files (dotfiles) using Git
-Here’s your blog post adapted to follow the specified style:
 
 ### **Prerequisites**
 
@@ -18,16 +17,16 @@ Here’s your blog post adapted to follow the specified style:
 
 ### **Step 1: Initializing the Repository**
 
-1. Initialize a bare Git repository in your home directory:
+1. Initialize a bare Git repository in your home directory
 
    ```shell
    cd
    git init --bare $HOME/.dotfiles
    ```
 
-   This creates a hidden Git repository named `.dotfiles` to store configuration history.
+   This creates a hidden Git repository named `.dotfiles` to store configuration history
 
-2. Create an alias for working with dotfiles:
+2. Create an alias for working with dotfiles
 
    ```shell
    alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -37,13 +36,13 @@ Here’s your blog post adapted to follow the specified style:
    - **`alias config`**: Allows you to use the `config` alias instead of `git` to work specifically with dotfiles.
    - **`status.showUntrackedFiles no`**: Hides untracked files to keep your `config status` output clean.
 
-3. Persist the alias by adding it to your shell configuration file (e.g., `.zshrc` or `.bashrc`):
+3. Persist the alias by adding it to your shell configuration file (e.g., `.zshrc` or `.bashrc`)
 
    ```shell
    echo "alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
    ```
 
-   Reload the shell configuration:
+4. Reload the shell configuration
 
    ```shell
    source $HOME/.zshrc
@@ -66,9 +65,9 @@ Here’s your blog post adapted to follow the specified style:
 
 ### **Step 3: Managing Dotfiles**
 
-With the setup complete, you can now use the `config` alias to track files in your `$HOME` directory.
+With the setup complete, you can now use the `config` alias to track files in your `$HOME` directory
 
-1. Check the repository's status:
+1. Check the repository's status
 
    ```shell
    config status
@@ -87,7 +86,7 @@ With the setup complete, you can now use the `config` alias to track files in yo
    config push
    ```
 
-   Repeat these steps for any additional configuration files you want to track.
+   Repeat these steps for any additional configuration files you want to track
 
 ### **Conclusion**
 
