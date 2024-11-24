@@ -7,7 +7,7 @@ publishedDate: Jul 08 2022
 updatedDate: June 2 2024
 ---
 
-Why use the ugly GRUB bootloader when you can by pass it? Use the native EFISTUB instead
+Why use the ugly GRUB bootloader when you can bypass it? Use the native EFISTUB instead
 
 ### Get into the EFI Shell
 
