@@ -59,4 +59,3 @@ sudo ufw reload             # Reload UFW to apply changes without disabling
 - Regularly monitor UFW logs for unauthorized access.
 
 For detailed documentation, visit the [official UFW documentation](https://help.ubuntu.com/community/UFW).
-```
