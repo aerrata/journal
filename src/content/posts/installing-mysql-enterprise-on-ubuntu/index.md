@@ -1,5 +1,5 @@
 ---
-title: Installing MySQL Enterprise on Ubuntu 24.04
+title: Installing MySQL Enterprise on Ubuntu
 description: Downloading MySQL Enterprise with wget script
 image:
 tags:
@@ -14,9 +14,9 @@ MySQL Enterprise packages are not available in Ubuntu's default repositories. Yo
 
 ### Prerequisites
 
-1. Ubuntu 24.04 server
-2. Sudo privileges
-3. Access to the Oracle account
+1. Ubuntu server
+2. Access to the Oracle account
+3. Sudo privileges
 
 ### Step 1: Download the wget script
 

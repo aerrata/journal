@@ -9,7 +9,7 @@ updatedDate: June 2 2024
 draft: false
 ---
 
-Uncomplicated Firewall (UFW) is a user-friendly interface for managing firewall rules.
+The **Uncomplicated Firewall (UFW)** is a user-friendly interface for managing firewall rules.
 
 ### Enable UFW
 

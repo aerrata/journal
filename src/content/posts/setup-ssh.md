@@ -9,52 +9,84 @@ updatedDate: June 2 2024
 draft: false
 ---
 
-### Checking for existing SSH keys
+Using the SSH protocol, you can connect and authenticate to remote servers and services.
 
-Check the directory listing to see if you already have a public SSH key.
+### Prerequisites
+
+1. Linux or macOS
+
+### Step 1: Checking for existing SSH keys
+
+Before you generate a new SSH key, you should check your local machine for existing keys in `~/.ssh` directory.
 
 ```shell
 ls -al ~/.ssh
 ```
 
-### Generating a new SSH key and adding it to the ssh-agent
+Check the directory listing to see if you already have a public SSH key.
 
-After you've checked for existing SSH keys, you can generate a new SSH key to use for authentication, then add it to the ssh-agent.
+- id_rsa.pub
+- id_ecdsa.pub
+- id_ed25519.pub
 
-```shell
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
+> If you receive an error that ~/.ssh doesn't exist, you do not have an existing SSH key pair in the default location. You can create a new SSH key pair in the next step.
 
-### Adding your SSH key to the ssh-agent
-
-Start the ssh-agent in the background
+### Step 2: Generating a new SSH key
 
 ```shell
-eval "$(ssh-agent -s)"
+ssh-keygen -t ed25519 -C "user@example.com"
 ```
 
-> If you're using macOS Sierra 10.12.2 or later, you will need to modify your ~/.ssh/config file to automatically load keys into the ssh-agent and store passphrases in your keychain.
+```
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/user/.ssh/id_ed25519): [ENTER]
+Enter passphrase (empty for no passphrase): [ENTER]
+Enter same passphrase again: [ENTER]
+```
+
+### Step 3: Adding your SSH key to the ssh-agent
+
+1. Start the ssh-agent in the background
+
+   ```shell
+   eval "$(ssh-agent -s)"
+   ```
+
+2. Add your SSH private key to the ssh-agent
+
+   ```shell
+   ssh-add ~/.ssh/id_ed25519
+   ```
+
+> If you're using macOS Sierra 10.12.2 or later, you will need to modify your ~/.ssh/config file to automatically load keys into the ssh-agent and store passphrases in your keychain
 >
-> ```shell
-> Host github.com
->   AddKeysToAgent yes
->   IdentityFile ~/.ssh/id_ed25519
-> ```
+> 1. Open the SSH config file, create if doesn't exist
+>
+>    ```shell
+>    nano ~/.ssh/config
+>    ```
+>
+> 2. Modify the file to contain the following lines. If your SSH key file has a different name or path, modify to match your current setup
+>
+>    ```
+>    Host github.com
+>    AddKeysToAgent yes
+>    IdentityFile ~/.ssh/id_ed25519
+>    ```
 
-Add your SSH private key to the ssh-agent
+### Step 4: Add your public SSH key to the server
+
+Copy the key content to your clipboard
 
 ```shell
-ssh-add ~/.ssh/id_ed25519
+pbcopy < ~/.ssh/id_ed25519.pub # Or copy cat output
 ```
 
-### Add your new SSH key to the server
+Add the public SSH key on the remote server or your git client settings page. This may differ based on what service you use
 
-```shell
-cat ~/.ssh/id_ed25519.pub
-```
+- On Github, go to **Settings** > **SSH and GPG keys** > **New SSH key**
+- On Bitbucket, go to **Personal Bitbucket settings** > **SSH keys** > **Add key**
 
-Then select and copy the contents of the id_ed25519.pub file displayed in the terminal to your clipboard.
+### Conclusion
 
-Register the new SSH key on your server or git client settings page. This may differ based on what server or git client that you use.
-
-That's it, you can verify by simply connect to the server or git client.
+To verify the setup, simply connect to the remote server or the git repository.

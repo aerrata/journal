@@ -9,15 +9,15 @@ updatedDate:
 draft: false
 ---
 
-The **Secure Copy Protocol (SCP)** is a simple and efficient way to securely transfer files between a local system and a remote server, or between two remote systems. SCP uses SSH (Secure Shell) for encryption, ensuring that your data remains secure during transit.
+The **Secure Copy Protocol (SCP)** is a simple and efficient way to securely transfer files between a local machine and a remote server, or between two remote systems. SCP uses SSH (Secure Shell) for encryption, ensuring that your data remains secure during transit.
 
 ### Prerequisites
 
-1. A Linux, macOS or Windows (using the new Windows Terminal)
+1. Linux, macOS or Windows (using the new Windows Terminal)
 2. SSH access to the target remote server
 3. Sudo privileges (optional)
 
-### Command Syntax
+### Command syntax
 
 ```bash
 scp [options] source_file destination
@@ -32,7 +32,7 @@ scp [options] source_file destination
   - `-p file.txt`: Preserve file attributes like modification time and permissions
   - `-C large_file.iso`: Enable compression for faster transfers over slow networks
 
-### Copying Files from Local to Remote
+### Copying files from local to remote server
 
 Copying `report.pdf` to the `/home/user/documents/` directory on the remote server
 
@@ -40,9 +40,9 @@ Copying `report.pdf` to the `/home/user/documents/` directory on the remote serv
 scp report.pdf user@192.168.1.100:/home/user/documents/
 ```
 
-### Copying Files from Remote to Local
+### Copying files from remote to local machine
 
-Downloading `report.pdf` from a remote server to your machine
+Downloading `report.pdf` from a remote server to your local machine
 
 ```bash
 scp user@192.168.1.100:/home/user/reports/report.pdf ~/Downloads/
