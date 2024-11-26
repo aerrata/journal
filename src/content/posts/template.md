@@ -3,8 +3,9 @@ title: Lorem ipsum dolor sit amet
 description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ipsum.
 tags: ['lorem']
 image: 
-publishedDate: Jan 01 2024
+createdDate: Jan 01 2024
 updatedDate: 
+draft: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ipsum.

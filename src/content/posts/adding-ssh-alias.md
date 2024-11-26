@@ -1,10 +1,12 @@
 ---
 title: Adding SSH Alias
 description: Set up SSH aliases for easier remote server access
-tags: ['linux']
 image:
-publishedDate: Aug 12 2023
-# updatedDate:
+tags:
+  - linux
+createdDate: Aug 12 2023
+updatedDate:
+draft: false
 ---
 
 Setting up SSH aliases can make accessing your remote servers much simpler and quicker. Instead of remembering and typing out lengthy commands, you can create short, easy-to-remember aliases.

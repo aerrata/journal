@@ -1,10 +1,12 @@
 ---
 title: Virtual Column In Laravel
 description: Setting virtual column from your existing JSON column
-tags: ['laravel']
 image:
-publishedDate: Feb 10 2023
+tags:
+  - laravel
+createdDate: Feb 10 2023
 updatedDate: June 2 2024
+draft: false
 ---
 
 Virtual columns are not physically stored in the database but are calculated on-the-fly. They are particularly useful when working with JSON columns, as they allow you to extract and utilize data without duplicating it.

@@ -1,10 +1,12 @@
 ---
 title: Markdown Kitchen Sink
 description: TailwindCCS Typography Theme
-tags: ['tailwindcss']
 image:
-publishedDate: Feb 13 2020
-# updatedDate:
+tags:
+  - markdown
+createdDate: Feb 13 2020
+updatedDate:
+draft: false
 ---
 
 # Markdown Cheat Sheet
@@ -20,7 +22,9 @@ These are the elements outlined in John Gruber’s original design document. All
 ### Heading
 
 # H1
+
 ## H2
+
 ### H3
 
 ### Bold
@@ -29,7 +33,7 @@ These are the elements outlined in John Gruber’s original design document. All
 
 ### Italic
 
-*italicized text*
+_italicized text_
 
 ### Blockquote
 
@@ -69,10 +73,10 @@ These elements extend the basic syntax by adding additional features. Not all Ma
 
 ### Table
 
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
+| Syntax    | Description |
+| --------- | ----------- |
+| Header    | Title       |
+| Paragraph | Text        |
 
 ### Fenced Code Block
 
@@ -137,7 +141,7 @@ end tell
 </code></pre>
 
 ![Albuquerque, New Mexico](/assets/images/albuquerque.jpg)
-*A single track trail outside of Albuquerque, New Mexico.*
+_A single track trail outside of Albuquerque, New Mexico._
 
 By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
 

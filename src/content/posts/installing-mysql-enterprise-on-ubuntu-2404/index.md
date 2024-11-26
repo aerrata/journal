@@ -1,10 +1,13 @@
 ---
 title: Installing MySQL Enterprise on Ubuntu 24.04
 description: Downloading MySQL Enterprise with wget script
-tags: ['linux', 'mysql']
 image:
-publishedDate: Nov 23 2024
+tags:
+  - linux
+  - mysql
+createdDate: Nov 23 2024
 updatedDate:
+draft: false
 ---
 
 MySQL Enterprise packages are not available in Ubuntu's default repositories. You need to download them directly from the MySQL website. For this guide we will download the package via wget script instead of direct download.

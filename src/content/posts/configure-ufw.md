@@ -1,10 +1,12 @@
 ---
 title: Configure UFW
 description: Configure your UFW settings
-tags: ['linux']
 image:
-publishedDate: Jan 5 2024
+tags:
+  - linux
+createdDate: Jan 5 2024
 updatedDate: June 2 2024
+draft: false
 ---
 
 Uncomplicated Firewall (UFW) is a user-friendly interface for managing firewall rules.

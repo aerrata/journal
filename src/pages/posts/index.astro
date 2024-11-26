@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
-const posts = (await getCollection('posts')).sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
+const posts = (await getCollection('posts')).filter((post) => !post.data.draft).sort((a, b) => b.data.createdDate.valueOf() - a.data.createdDate.valueOf())
 ---
 
 <BaseLayout title="Today I Learned;">
@@ -15,8 +15,8 @@ const posts = (await getCollection('posts')).sort((a, b) => b.data.publishedDate
             <div>
               <div class="flex space-x-2 text-xs tracking-wider text-muted-foreground md:text-sm">
                 <p>
-                  <time datetime={post.data.publishedDate.toISOString()}>
-                    {post.data.publishedDate.toLocaleDateString('en-us', {
+                  <time datetime={post.data.createdDate.toISOString()}>
+                    {post.data.createdDate.toLocaleDateString('en-us', {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',

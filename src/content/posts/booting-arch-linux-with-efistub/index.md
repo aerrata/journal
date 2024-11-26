@@ -1,10 +1,12 @@
 ---
 title: Booting Arch Linux with EFISTUB
 description: Boot using EFISTUB instead of GRUB bootloader
-tags: ['linux']
-image: https://images.unsplash.com/photo-1510944406431-1cf21ca0b134?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-publishedDate: Jul 08 2022
+image: ./arch.jpg
+tags:
+  - linux
+createdDate: Jul 08 2022
 updatedDate: June 2 2024
+draft: false
 ---
 
 Why use the ugly GRUB bootloader when you can bypass it? Use the native EFISTUB instead

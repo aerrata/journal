@@ -1,10 +1,12 @@
 ---
 title: Setting Up Dotfiles
-description: By using bare git repository
-tags: ['linux']
+description: Setup dotfiles with bare git repository
 image:
-publishedDate: Jan 20 2022
+tags:
+  - linux
+createdDate: Jan 20 2022
 updatedDate: June 2 2024
+draft: false
 ---
 
 Easily track and synchronize your machine's configuration files (dotfiles) using Git

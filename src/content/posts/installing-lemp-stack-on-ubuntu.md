@@ -1,10 +1,13 @@
 ---
 title: Setup Laravel App on a LEMP Stack with Ubuntu
 description: Set up and run Laravel app on Ubuntu
-tags: ['linux', 'laravel']
 image:
-publishedDate: June 2 2024
-# updatedDate:
+tags:
+  - linux
+  - laravel
+createdDate: June 2 2024
+updatedDate:
+draft: false
 ---
 
 ### Initial Setup

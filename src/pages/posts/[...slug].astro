@@ -21,9 +21,9 @@ const { Content } = await post.render()
       <h1 class="pb-6 text-2xl font-bold md:text-3xl" transition:name={`post-${post.slug}`}>{post.data.title}</h1>
       <div class="flex space-x-2 text-xs tracking-wider text-muted-foreground md:text-sm">
         <p>
-          <time datetime={post.data.publishedDate.toISOString()}>
+          <time datetime={post.data.createdDate.toISOString()}>
             {
-              post.data.publishedDate.toLocaleDateString('en-us', {
+              post.data.createdDate.toLocaleDateString('en-us', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric',
@@ -36,8 +36,8 @@ const { Content } = await post.render()
       </div>
 
       <div class="relative mt-20">
-        {post.data.image && <Image src={post.data.image} alt={post.data.title} format="avif" height={300} width={300} class="absolute inset-0 w-full object-cover object-center blur-xl" />}
-        {post.data.image && <Image src={post.data.image} alt={post.data.title} format="avif" height={300} width={300} class="relative mt-20 w-full object-cover object-center" />}
+        {post.data.image && <Image src={post.data.image} alt={post.data.title} format="avif" height={1000} width={1000} class="absolute inset-0 w-full object-cover object-center blur-xl" />}
+        {post.data.image && <Image src={post.data.image} alt={post.data.title} format="avif" height={1000} width={1000} class="relative mt-20 w-full object-cover object-center" />}
       </div>
 
       <article class="prose prose-sm prose-foreground mt-20 max-w-none md:prose-base prose-code:text-xs md:prose-code:text-sm">

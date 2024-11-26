@@ -1,10 +1,12 @@
 ---
 title: Bypass Telco Hotspot Limit
 description: Screw Up Your Telco
-tags: ['linux']
 image:
-publishedDate: Aug 12 2023
+tags:
+  - linux
+createdDate: Aug 12 2023
 updatedDate: June 2 2024
+draft: false
 ---
 
 ### Setup
@@ -31,7 +33,8 @@ Open your Terminal, run the following
 sysctl net.inet.ip.ttl=65
 ```
 
-> Default TTL and Hop Limit values vary between different operating systems 
+> Default TTL and Hop Limit values vary between different operating systems
+>
 > 1. Linux kernel 2.4 (circa 2001): 255
 > 2. Linux kernel 4.10 (2015): 64
 > 3. Windows XP (2001): 128
@@ -39,4 +42,3 @@ sysctl net.inet.ip.ttl=65
 > 5. Windows Server 2008: 128
 > 6. Windows Server 2019 (2018): 128
 > 7. MacOS (2001): 64
-
