@@ -9,7 +9,7 @@ updatedDate: June 2 2024
 draft: false
 ---
 
-Easily track and synchronize your machine's configuration files (dotfiles) using Git
+Easily track and synchronize your machine's config files (dotfiles) using Git
 
 ### **Prerequisites**
 
@@ -26,7 +26,7 @@ Easily track and synchronize your machine's configuration files (dotfiles) using
    git init --bare $HOME/.dotfiles
    ```
 
-   This creates a hidden Git repository named `.dotfiles` to store configuration history
+   This will creates a hidden Git config directory `.dotfiles`
 
 2. Create an alias for working with dotfiles
 

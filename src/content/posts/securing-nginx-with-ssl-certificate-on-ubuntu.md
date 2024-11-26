@@ -56,7 +56,7 @@ This will create a `cert_bundle.crt` file that contains both your server certifi
 
 ### Configure NGINX
 
-Navigate to the NGINX configuration directory. The main configuration file is typically located at `/etc/nginx/nginx.conf`, while server block configurations reside in `/etc/nginx/sites-available/`. In this case, open the sites config file, for example: `/etc/nginx/sites-available/foo.conf`.
+Navigate to the NGINX configuration directory. The main config file is typically located at `/etc/nginx/nginx.conf`, while server block configurations reside in `/etc/nginx/sites-available/`. In this case, open the sites config file, for example: `/etc/nginx/sites-available/foo.conf`.
 
 ```nginx
 server {
