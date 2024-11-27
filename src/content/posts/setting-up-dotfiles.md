@@ -11,13 +11,15 @@ draft: false
 
 Easily track and synchronize your machine's config files (dotfiles) using Git
 
-### **Prerequisites**
+---
+
+### Prerequisites
 
 1. A Linux or macOS terminal
 2. Git installed
 3. A GitHub account
 
-### **Step 1: Initializing the Repository**
+### Step 1: Initialize a new Git repository
 
 1. Initialize a bare Git repository in your home directory
 
@@ -26,31 +28,31 @@ Easily track and synchronize your machine's config files (dotfiles) using Git
    git init --bare $HOME/.dotfiles
    ```
 
-   This will creates a hidden Git config directory `.dotfiles`
-
-2. Create an alias for working with dotfiles
+2. Create an `config` alias instead of `git` to work specifically with dotfiles
 
    ```shell
    alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+   ```
+
+3. Hides untracked files to keep your `config status` output clean.
+
+   ```shell
    config config --local status.showUntrackedFiles no
    ```
 
-   - **`alias config`**: Allows you to use the `config` alias instead of `git` to work specifically with dotfiles.
-   - **`status.showUntrackedFiles no`**: Hides untracked files to keep your `config status` output clean.
-
-3. Persist the alias by adding it to your shell configuration file (e.g., `.zshrc` or `.bashrc`)
+4. Add the alias to your shell config file
 
    ```shell
    echo "alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
    ```
 
-4. Reload the shell configuration
+5. Reload your shell
 
    ```shell
    source $HOME/.zshrc
    ```
 
-### **Step 2: Connecting to a Remote Repository**
+### Step 2: Connect to a remote repository
 
 1. Create a new repository on GitHub
 2. Link the local repository to the remote
@@ -65,7 +67,7 @@ Easily track and synchronize your machine's config files (dotfiles) using Git
    config push -u origin main
    ```
 
-### **Step 3: Managing Dotfiles**
+### Step 3: Manage dotfiles
 
 With the setup complete, you can now use the `config` alias to track files in your `$HOME` directory
 
@@ -79,7 +81,7 @@ With the setup complete, you can now use the `config` alias to track files in yo
 
    ```shell
    config add .zshrc
-   config commit -m "Add zshrc configuration"
+   config commit -m "feat: add new alias"
    ```
 
 3. Push changes to the remote repository:
@@ -88,8 +90,4 @@ With the setup complete, you can now use the `config` alias to track files in yo
    config push
    ```
 
-   Repeat these steps for any additional configuration files you want to track
-
-### **Conclusion**
-
-Using a bare Git repository for dotfiles is a simple yet powerful way to manage and share your configurations. By following this guide, you ensure that your environment remains consistent and reproducible across devices.
+   Repeat these steps for any additional files you want to track

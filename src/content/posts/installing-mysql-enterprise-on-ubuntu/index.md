@@ -12,6 +12,8 @@ draft: false
 
 MySQL Enterprise packages are not available in Ubuntu's default repositories. You need to download them directly from the MySQL website. For this guide we will download the package via wget script instead of direct download.
 
+---
+
 ### Prerequisites
 
 1. Ubuntu server

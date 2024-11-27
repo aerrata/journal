@@ -9,27 +9,38 @@ updatedDate:
 draft: false
 ---
 
-Setting up SSH aliases can make accessing your remote servers much simpler and quicker. Instead of remembering and typing out lengthy commands, you can create short, easy-to-remember aliases.
+Create SSH aliases for quick and easy remote server access, reducing the need to remember lengthy commands.
 
-### Open your SSH config file
+---
+
+### Prerequisites
+
+1. SSH client installed
+2. Access to your SSH config file `~/.ssh/config`
+
+### Add new SSH alias
+
+1. Open the SSH config file
+
+   ```shell
+   nano ~/.ssh/config
+   ```
+
+2. Add the alias for your remote server
+
+   ```
+   Host forge
+       HostName 192.168.1.99
+       User forge
+       # Port 2222
+   ```
+
+### Test the alias
+
+To connect using the alias
 
 ```shell
-nano ~/.ssh/config
+ssh forge
 ```
 
-### Add your SSH aliases
-
-In the SSH config file, add aliases for your remote servers. Each alias should include the hostname or IP address of the server, the username you use to connect, and any other configuration options.
-
-```
-Host phone
-    HostName 192.168.1.100
-    User username
-    Port 2222
-```
-
-### Test
-
-```shell
-ssh phone
-```
+Now you can access your server with just the alias `forge`, simplifying the connection process.

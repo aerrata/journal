@@ -7,7 +7,7 @@ tags:
   - nginx
 createdDate: Mar 22 2024
 updatedDate: June 2 2024
-draft: false
+draft: true
 ---
 
 Securing your Laravel application with SSL (Secure Sockets Layer) via NGINX on an Ubuntu server is essential for safeguarding sensitive data and ensuring encrypted communication between clients and your server.

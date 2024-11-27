@@ -11,6 +11,8 @@ draft: false
 
 The **Secure Copy Protocol (SCP)** is a simple and efficient way to securely transfer files between a local machine and a remote server, or between two remote systems. SCP uses SSH (Secure Shell) for encryption, ensuring that your data remains secure during transit.
 
+---
+
 ### Prerequisites
 
 1. Linux, macOS or Windows (using the new Windows Terminal)

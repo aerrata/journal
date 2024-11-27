@@ -11,6 +11,8 @@ draft: false
 
 Virtual columns are not physically stored in the database but are calculated on-the-fly. They are particularly useful when working with JSON columns, as they allow you to extract and utilize data without duplicating it.
 
+---
+
 ### Laravel Migration File
 
 ```php

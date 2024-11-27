@@ -9,7 +9,7 @@ tags:
   - nuxtjs
 createdDate: June 30 2024
 updatedDate:
-draft: false
+draft: true
 ---
 
 ### Install Node.js [^1]

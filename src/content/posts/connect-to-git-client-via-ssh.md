@@ -1,5 +1,5 @@
 ---
-title: Connecting to Github via SSH
+title: Connect to Github via SSH
 description: Set up SSH to connect to your Github repository
 image:
 tags:
@@ -9,7 +9,9 @@ updatedDate: June 2 2024
 draft: false
 ---
 
-**SSH (Secure Shell)** allows you to authenticate with remote services like GitHub without entering credentials repeatedly. This guide walks you through setting up SSH with GitHub by generating an SSH key pair and adding it to both the SSH agent and your GitHub account.
+**Secure Shell Protocol (SSH)** is a cryptographic network protocol that provides a secure channel over an unsecured network. In the context of Git and GitHub, SSH offers an efficient and secure method to authenticate and interact with repositories, bypassing the need to repeatedly input passwords. By configuring an SSH key pair, you can establish a trust-based connection between their local machine and GitHub.
+
+---
 
 ### Prerequisites
 
@@ -56,23 +58,25 @@ Enter same passphrase again: [ENTER]
    ssh-add ~/.ssh/id_ed25519
    ```
 
-For macOS Sierra 10.12.2 or later, add the following to `~/.ssh/config`
-
-```shell
-Host github.com
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_ed25519
-```
+> For macOS Sierra 10.12.2 or later, add the following to `~/.ssh/config`
+>
+> ```shell
+> Host github.com
+>   AddKeysToAgent yes
+>   IdentityFile ~/.ssh/id_ed25519
+> ```
 
 ### Step 4: Add your public SSH key to GitHub
 
-Copy your public key to the clipboard
+1. Copy your public key to the clipboard
 
-```shell
-cat ~/.ssh/id_ed25519.pub
-```
+   ```shell
+   cat ~/.ssh/id_ed25519.pub
+   ```
 
-Go to GitHub > Settings > SSH and GPG keys > New SSH key, and paste the key
+2. Visit [Github](https://github.com)
+
+3. Navigate to **Settings** > **SSH and GPG keys** > **New SSH key**, and paste the key
 
 ### Step 5: Test the SSH Connection
 
