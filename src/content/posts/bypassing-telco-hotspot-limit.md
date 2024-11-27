@@ -9,36 +9,53 @@ updatedDate: June 2 2024
 draft: false
 ---
 
-### Setup
+**TTL (Time-to-Live)** is a packet value that decreases with each network hop. Telcos monitor TTL to detect and throttle hotspot usage by identifying mismatched values between devices and routers.
 
-First, connect your wifi
+Why adjust TTL? Setting TTL to 65 masks hotspot activity, making packets look like they're from a single device, bypassing restrictions.
 
-#### Windows
+### Prerequisites
 
-Open your Command Prompt as Administrator, run the following
+1. Administrative privileges
+2. Connected to your phone mobile hotspot
 
-```shell
-netsh int ipv4 set glob defaultcurhoplimit=65
-```
+### Step A: macOS
 
-```shell
-netsh int ipv6 set glob defaultcurhoplimit=65
-```
+1. Open Terminal
+2. Run the following command
 
-#### MacOS
+   ```shell
+   sudo sysctl net.inet.ip.ttl=65
+   ```
 
-Open your Terminal, run the following
+### Step B: Linux
 
-```shell
-sysctl net.inet.ip.ttl=65
-```
+1. Open Terminal
+2. Run the following command
 
-> Default TTL and Hop Limit values vary between different operating systems
->
-> 1. Linux kernel 2.4 (circa 2001): 255
-> 2. Linux kernel 4.10 (2015): 64
-> 3. Windows XP (2001): 128
-> 4. Windows 10 (2015): 128
-> 5. Windows Server 2008: 128
-> 6. Windows Server 2019 (2018): 128
-> 7. MacOS (2001): 64
+   ```shell
+   sudo sysctl -w net.ipv4.ip_default_ttl=65
+   ```
+
+### Step C: Windows
+
+1. Open Command Prompt as Administrator
+2. Run the following command
+
+   ```shell
+   netsh int ipv4 set glob defaultcurhoplimit=65
+   ```
+
+   ```shell
+   netsh int ipv6 set glob defaultcurhoplimit=65
+   ```
+
+### Default TTL/Hop Limit Values
+
+Default values vary across operating systems
+
+| Operating System             | Default TTL |
+| ---------------------------- | ----------- |
+| Linux Kernel 5.x (2024)      | 64          |
+| MacOS (2024, latest version) | 64          |
+| Windows 11 (2024)            | 128         |
+| Windows Server 2022 (2024)   | 128         |
