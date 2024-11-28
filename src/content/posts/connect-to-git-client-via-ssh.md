@@ -9,7 +9,7 @@ updatedDate: June 2 2024
 draft: false
 ---
 
-**Secure Shell Protocol (SSH)** is a cryptographic network protocol that provides a secure channel over an unsecured network. In the context of Git and GitHub, SSH offers an efficient and secure method to authenticate and interact with repositories, bypassing the need to repeatedly input passwords. By configuring an SSH key pair, you can establish a trust-based connection between their local machine and GitHub.
+**Secure Shell Protocol (SSH)** is a cryptographic network protocol that provides a secure channel over an unsecured network. In the context of Git and GitHub, SSH offers an efficient and secure method to authenticate and interact with repositories, bypassing the need to repeatedly input passwords. By configuring an SSH key pair, you can establish a trust-based connection between your local machine and GitHub.
 
 ---
 
@@ -86,4 +86,4 @@ Test the connection with
 ssh -T git@github.com
 ```
 
-If prompted, type "yes" to confirm the connection. You'll see a success message if everything is set up correctly.
+If prompted, type `yes` to confirm the connection. You'll see a success message if everything is set up correctly.
