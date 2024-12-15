@@ -250,3 +250,195 @@ server {
         listen [::]:80 default_server; # Comment this line
 ...
 ```
+
+
+
+
+To set up and run jobs and the scheduler for your Laravel application on your Ubuntu server, follow these steps:
+
+---
+
+### **1. Configure Laravel Scheduler**
+
+Laravel's scheduler requires a single cron job to run every minute. Here's how to set it up:
+
+1. Open the crontab for the `www-data` user:
+   ```bash
+   sudo crontab -u www-data -e
+   ```
+
+2. Add the following line to run the Laravel scheduler every minute:
+   ```bash
+   * * * * * php /path/to/laravel/artisan schedule:run >> /dev/null 2>&1
+   ```
+
+   Replace `/path/to/laravel` with the full path to your Laravel project.
+
+3. Save and exit the editor.
+
+---
+
+### **2. Run Laravel Queues**
+
+Laravel uses a queue worker to process jobs. Start the queue worker using `artisan`:
+
+1. Test the queue manually:
+   ```bash
+   php /path/to/laravel/artisan queue:work
+   ```
+
+2. To keep the queue running continuously, you should use a process manager like **Supervisor**.
+
+---
+
+### **3. Configure Supervisor for Laravel Queues**
+
+1. Install Supervisor:
+   ```bash
+   sudo apt update
+   sudo apt install supervisor
+   ```
+
+2. Create a Supervisor configuration file for your Laravel queue worker:
+   ```bash
+   sudo nano /etc/supervisor/conf.d/laravel-worker.conf
+   ```
+
+3. Add the following configuration (replace paths with your project details):
+   ```ini
+   [program:laravel-worker]
+   process_name=%(program_name)s_%(process_num)02d
+   command=php /var/www/edewan/artisan queue:work --sleep=3 --tries=3 --timeout=90
+   autostart=true
+   autorestart=true
+   user=www-data
+   numprocs=1
+   redirect_stderr=true
+   stdout_logfile=/path/to/laravel/storage/logs/worker.log
+
+   [program:laravel-worker]
+   process_name=%(program_name)s_%(process_num)02d
+   command=php /home/forge/app.com/artisan queue:work sqs --sleep=3 --tries=3 --max-time=3600
+   autostart=true
+   autorestart=true
+   stopasgroup=true
+   killasgroup=true
+   user=forge
+   numprocs=8
+   redirect_stderr=true
+   stdout_logfile=/var/www/edewan/storage/logs/supervisor.log
+   stopwaitsecs=3600
+   ```
+
+4. Save and exit the editor.
+
+5. Update Supervisor to apply the configuration:
+   ```bash
+   sudo supervisorctl reread
+   sudo supervisorctl update
+   sudo supervisorctl start laravel-worker:*
+   ```
+
+---
+
+### **4. Verify Everything is Running**
+
+- Check the logs to confirm the scheduler and queue are working:
+  - Laravel logs: `/path/to/laravel/storage/logs/laravel.log`
+  - Worker logs: `/path/to/laravel/storage/logs/worker.log`
+
+- Use `supervisorctl` to manage the queue worker:
+  ```bash
+  sudo supervisorctl status
+  ```
+
+---
+
+With this setup, the scheduler will run automatically every minute, and the queue worker will continuously process jobs in the background. Let me know if you need any troubleshooting!
+
+
+
+-------------------------
+
+
+### Minimal Steps (If No Permission Issues Exist Already)
+If the writable directories already have the correct ownership (`www-data`) and you're fine with being the owner of the rest, you can skip redundant steps:
+
+```bash
+sudo chmod -R 775 /path/to/laravel/storage /path/to/laravel/bootstrap/cache
+sudo chown -R $USER:www-data /path/to/laravel
+```
+
+This will likely suffice. Let me know if you want to further refine the commands!
+
+
+
+
+
+MYSQL
+
+Your commands are mostly correct, but to improve security and match your two-server setup, you should limit the privileges to only the IP of your application server (`192.223.1.10`). Here's the adjusted command:
+
+```sql
+CREATE USER 'images_user'@'192.223.1.10' IDENTIFIED BY 'images_password'; 
+GRANT ALL PRIVILEGES ON images.* TO 'images_user'@'192.223.1.10'; 
+FLUSH PRIVILEGES;
+```
+
+This ensures that the `images_user` can only connect from the application server. Additionally:
+
+1. Make sure your database server (`192.223.1.11`) is configured to allow remote connections.
+   - Update the MySQL configuration file (`/etc/mysql/my.cnf` or `/etc/mysql/mysql.conf.d/mysqld.cnf`) and set `bind-address = 192.223.1.11`.
+
+2. Restart MySQL to apply the configuration:
+   ```bash
+   sudo systemctl restart mysql
+   ```
+
+3. Open the appropriate port (default is `3306`) in the firewall of the database server to allow connections from the app server.
+
+
+------
+
+
+You can create a database from the app server if:
+
+1. **You have remote access** to the database server (`192.223.1.11`).
+2. The MySQL user you are using (e.g., `images_user` or `root`) has sufficient privileges to create databases.
+
+If these conditions are met, follow these steps:
+
+### 1. Connect to the Database Server from the App Server
+On the app server (`192.223.1.10`), use the following command to log in to MySQL on the DB server:
+```bash
+mysql -u root -p -h 192.223.1.11
+```
+
+Replace `root` with the appropriate MySQL user and provide the password when prompted.
+
+### 2. Create the Database
+Once logged in, create the database:
+```sql
+CREATE DATABASE images;
+```
+
+### 3. Verify
+Check if the database was created:
+```sql
+SHOW DATABASES;
+```
+
+### Note:
+- Ensure that the database server (`192.223.1.11`) allows connections from the app server IP (`192.223.1.10`) by properly configuring `bind-address` in MySQL and opening the necessary firewall ports.
+- If the `images_user` does not have permissions to create a database, use a privileged account like `root`.
+
+Let me know if you encounter any issues!
+
+
+
+
+
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 22
+nvm install-latest-npm
