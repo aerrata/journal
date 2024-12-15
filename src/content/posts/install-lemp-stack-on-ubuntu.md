@@ -7,7 +7,7 @@ tags:
   - laravel
 createdDate: June 2 2024
 updatedDate:
-draft: true
+draft: false
 ---
 
 ### Initial Setup
