@@ -4,7 +4,7 @@ description: Easily reset your MySQL root password
 image:
 tags:
   - mysql
-createdDate: Dec 17 2023
+createdDate: Dec 17 2024
 updatedDate:
 draft: false
 ---
