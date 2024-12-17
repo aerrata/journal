@@ -13,12 +13,6 @@ The **Secure Copy Protocol (SCP)** is a simple and efficient way to securely tra
 
 ---
 
-### Prerequisites
-
-1. Linux, macOS or Windows (using the new Windows Terminal)
-2. SSH access to the target remote server
-3. Sudo privileges (optional)
-
 ### Command syntax
 
 ```bash

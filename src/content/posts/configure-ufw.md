@@ -13,11 +13,6 @@ draft: false
 
 ---
 
-### Prerequisites
-
-1. UFW installed (default in Ubuntu)
-2. Sudo privileges
-
 ### Enabling and Disabling UFW
 
 Enable UFW

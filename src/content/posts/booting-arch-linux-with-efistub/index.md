@@ -15,12 +15,6 @@ This approach will set up EFISTUB using the `bcfg` command available in UEFI She
 
 ---
 
-### Prerequisites
-
-1. An Arch Linux bootable drive
-2. A UEFI-compatible motherboard
-3. Access to the UEFI Shell v2 (provided in the Arch Linux bootable media)
-
 ### Step 1: Access the UEFI Shell
 
 1. Boot from your Arch Linux live USB or installation media.

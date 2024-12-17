@@ -13,11 +13,6 @@ Create SSH aliases for quick and easy remote server access, reducing the need to
 
 ---
 
-### Prerequisites
-
-1. SSH client installed
-2. Access to your SSH config file `~/.ssh/config`
-
 ### Add new SSH alias
 
 1. Open the SSH config file

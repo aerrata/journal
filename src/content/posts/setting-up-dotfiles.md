@@ -13,12 +13,6 @@ Easily track and synchronize your machine's config files (dotfiles) using Git
 
 ---
 
-### Prerequisites
-
-1. A Linux or macOS terminal
-2. Git installed
-3. A GitHub account
-
 ### Step 1: Initialize a new Git repository
 
 1. Initialize a bare Git repository in your home directory

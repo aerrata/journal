@@ -15,10 +15,7 @@ Why adjust TTL? Setting TTL to `65` masks hotspot activity, making packets look 
 
 ---
 
-### Prerequisites
-
-1. Administrative privileges
-2. Connected to your phone mobile hotspot
+### Connect to your phone mobile hotspot
 
 ### macOS
 

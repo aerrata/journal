@@ -13,11 +13,6 @@ UEFI is designed to remove the need for an intermediate bootloader such as GRUB.
 
 ---
 
-### Prerequisites
-
-1. Arch Linux bootable drive
-2. Machine with UEFI
-
 ### Step 1: Get into the EFI Shell
 
 In the Arch Linux boot menu, choose `UEFI Shell x86_64 v2` to get into the EFI Shell, then press `ESC` to skip the startup.nsh

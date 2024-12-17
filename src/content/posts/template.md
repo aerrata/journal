@@ -12,14 +12,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ipsum.
 
 ---
 
-### Prerequisites
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ipsum.
-
-1. Lorem
-2. Ipsum 
-3. Dolor sit amet
-
 ### Step 1: Lorem ipsum dolor sit amet
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ipsum.
