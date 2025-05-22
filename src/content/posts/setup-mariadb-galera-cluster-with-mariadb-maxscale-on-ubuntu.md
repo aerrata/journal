@@ -53,13 +53,13 @@ wsrep_on=ON
 wsrep_provider=/usr/lib/libgalera_smm.so
 
 wsrep_cluster_name="galera"
-wsrep_cluster_address="gcomm://172.31.33.101,172.31.33.102,172.31.33.103"
+wsrep_cluster_address="gcomm://172.31.33.101,172.31.33.102,172.31.33.103" # Your cluster nodes IP
 
 wsrep_sst_method=rsync
 wsrep_sst_auth="sst_user:sst_password"
 
-wsrep_node_name="node1" # Specific node name
-wsrep_node_address="172.31.33.101" # Specific node IP
+wsrep_node_name="node1" # Your current node name
+wsrep_node_address="172.31.33.101" # Your current node IP
 ```
 
 ### 3. Configure User
