@@ -110,7 +110,7 @@ CREATE TABLE foods (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50), created
 INSERT INTO foods (name) VALUES ('Nasi lemak'), ('Aglio olio'), ('Chicken chop');
 ```
 
-Then in the other nodes:
+Then you can verify then table contents in the other nodes:
 
 ```sql
 SELECT * FROM foods;
