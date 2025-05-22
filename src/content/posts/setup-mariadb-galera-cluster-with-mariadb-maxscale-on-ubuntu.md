@@ -95,6 +95,8 @@ sudo systemctl restart mariadb
 
 ### 6. Verify
 
+Verify the cluster status with:
+
 ```sql
 SHOW GLOBAL STATUS LIKE 'wsrep_cluster_size';
 SHOW GLOBAL STATUS LIKE 'wsrep_cluster_status';
@@ -110,7 +112,7 @@ CREATE TABLE foods (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50), created
 INSERT INTO foods (name) VALUES ('Nasi lemak'), ('Aglio olio'), ('Chicken chop');
 ```
 
-Then you can verify then table contents in the other nodes:
+Then you can verify the table contents in the other nodes:
 
 ```sql
 SELECT * FROM foods;
@@ -149,7 +151,7 @@ GRANT SELECT ON mysql.roles_mapping TO 'maxscale_user'@'%';
 GRANT SHOW DATABASES ON *.* TO 'maxscale_user'@'%';
 ```
 
-Create client user account. Your app will use this user to connect to MaxScale
+Create a client user account. Your app will use this user to connect to MaxScale
 
 ```sql
 CREATE USER 'app_user'@'%' IDENTIFIED BY 'app_password';
@@ -205,7 +207,7 @@ You can check the config with:
 maxscale --config-check
 ```
 
-Start MaxScale
+Start MaxScale service
 
 ```bash
 sudo systemctl start maxscale
@@ -220,7 +222,7 @@ sudo maxctrl list servers
 sudo maxctrl list listeners
 ```
 
-### 3. Enable MaxScale MaxGUI
+### 3. Enable MaxScale MaxGUI (Optional)
 
 Edit `/etc/maxscale.cnf`:
 
@@ -243,7 +245,7 @@ MaxGUI uses the same credentials as `maxctrl`. The default username is `admin` w
 
 ### 5. Verify
 
-You can connect to the proxy with:
+You can connect to the nodes via the proxy with:
 
 ```bash
 mariadb -h 172.31.33.100 -u app_user -p
