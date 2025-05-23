@@ -1,7 +1,8 @@
 ---
 title: Setup MariaDB Galera Cluster with MariaDB MaxScale on Ubuntu
 description: Setup and configure a multi-primary MariaDB Galera Cluster and MaxScale for read/write splitting on Ubuntu
-tags: ['devops']
+tags:
+  - devops
 image:
 createdDate: May 21 2025
 updatedDate:
