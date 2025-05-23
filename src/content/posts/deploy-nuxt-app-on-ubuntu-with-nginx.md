@@ -1,62 +1,62 @@
 ---
-title: Deploy Nuxt App on Ubuntu with Nginx and PM2
-description: Use Nginx to server your Nuxt app
+title: Deploy Next.js App on Ubuntu with Nginx and PM2
+description: Use Nginx to server your Next.js app
 image:
 tags:
   - linux
   - nginx
   - pm2
-  - nuxtjs
+  - nextjs
 createdDate: June 30 2024
 updatedDate:
 draft: false
 ---
 
-### Install Node.js
+PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
+
+---
+
+## Setup
+
+### 1. Install Node.js
+
+We'll use `nvm` to install Node.js.
 
 ```shell
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-export NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-NODE_VERSION=22
-nvm install $NODE_VERSION
-node -v
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+\. "$HOME/.nvm/nvm.sh"
+nvm install 24
 ```
 
-### Install PM2
+Install `bun`.
 
-PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
+```shell
+sudo npm install -g bun
+```
+
+### 2. Setup Next.js App
+
+Install PM2.
 
 ```shell
 sudo npm install -g pm2
 ```
 
-### Clone The Nuxt App
-
-```shell
-cd
-git clone https://user@bitbucket.org/org/nuxt-app.git nuxt-app
-sudo mv nuxt-app /var/www
-cd /var/www/nuxt-app
-```
-
-```shell
-npm ci
-npm run build
-```
-
-Create a new `ecosystem.config.cjs` file in your project root directory. You should commit this file.
+Create a new `ecosystem.config.js` file in your project root directory. You should commit this file.
 
 ```js
 module.exports = {
   apps: [
     {
-      name: 'NuxtAppName',
+      name: 'next-app',
       port: '3000',
-      exec_mode: 'cluster',
-      instances: 'max',
-      script: './.output/server/index.mjs',
+      script: 'npm',
+      args: 'start',
       env: {
         NODE_ENV: 'development',
+        AWS_REGION: process.env.AWS_REGION,
+        AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+        AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
         // Add your env variables here
       },
     },
@@ -64,55 +64,84 @@ module.exports = {
 }
 ```
 
-```shell
-pm2 start ecosystem.config.cjs
-pm2 save # Save the process lists
-pm2 startup systemd # Ensure to start the daemon on reboot
-pm2 list # See all processes
-```
-
-If you update the code, just reload pm2;
+Clone and build the app.
 
 ```shell
-pm2 reload ecosystem.config.cjs
+cd
+git clone git@github.com:user/next-app.git next-app
+mv next-app /var/www/next-app/
+cd /var/www/next-app
 ```
 
-### Setup NGINX
+```shell
+bun install --frozen-lockfile
+bun run build
+```
+
+Start the app in background via PM2.
+
+```shell
+pm2 start ecosystem.config.js
+pm2 save  # Save the process lists
+pm2 startup
+pm2 startup systemd -u ubuntu --hp /home/ubuntu  # Ensure to start the daemon on reboot
+pm2 list  # See all processes
+```
+
+> If you update your app, you can reload PM2 with:
+> 
+> ```shell
+> pm2 reload ecosystem.config.js
+> ```
+
+### 3. Configure NGINX
+
+Install NGINX
 
 ```shell
 sudo apt install nginx
-sudo nano /etc/nginx/sites-available/nuxt-app
 ```
+
+Create a new file `/etc/nginx/sites-available/next-app`, and add:
 
 ```nginx
 server {
-    listen 80;
-    server_name example.com;
+  listen 80;
+  server_name _;
 
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
+  location / {
+    proxy_pass http://localhost:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade \$http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host \$host;
+    proxy_cache_bypass \$http_upgrade;
+  }
 }
 ```
 
+Enable the site
+
 ```shell
-sudo ln -s /etc/nginx/sites-available/nuxt-app /etc/nginx/sites-enabled/
-sudo nginx -t
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/next-app /etc/nginx/sites-enabled/
+```
+
+Reload NGINX and PM2
+
+```shell
+pm2 reload 'next-app'
+sudo systemctl enable nginx
 sudo systemctl restart nginx
 ```
 
-### Setup Firewall
+### 4. Setup Firewall
 
 ```shell
 sudo ufw allow 80,443/tcp
 ```
 
-### Set Up SSL (Optional)
+### 5. Set Up SSL (Optional)
 
 To secure your site with HTTPS, you can use Let's Encrypt to obtain an SSL certificate:
 
@@ -121,11 +150,7 @@ sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx -d example.com
 ```
 
-### Verify
-
-Verify by accessing your site using domain or ip address in the web browser.
-
-### References
+## References
 
 1. [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
 2. [https://pm2.keymetrics.io/](https://pm2.keymetrics.io/)
