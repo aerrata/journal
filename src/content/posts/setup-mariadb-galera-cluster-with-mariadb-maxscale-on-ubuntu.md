@@ -1,6 +1,6 @@
 ---
 title: Setup MariaDB Galera Cluster with MariaDB MaxScale on Ubuntu
-description: Setup and configure a multi-primary node MariaDB Galera Cluster and MaxScale for read/write splitting on Ubuntu
+description: Setup and configure a multi-primary MariaDB Galera Cluster and MaxScale for read/write splitting on Ubuntu
 tags: ['devops']
 image:
 createdDate: May 21 2025
@@ -18,7 +18,7 @@ Using MariaDB MaxScale with MariaDB Galera Cluster offers several key benefits, 
 
 | Name     | Description    | IP address      | Allowed ports          |
 | -------- | -------------- | --------------- | ---------------------- |
-| `proxy1` | MaxScale proxy | `172.31.33.100` | 8989                   |
+| `proxy1` | MaxScale proxy | `172.31.33.100` | 3306, 8989             |
 | `node1`  | MariaDB node 1 | `172.31.33.101` | 3306, 4567, 4568, 4444 |
 | `node3`  | MariaDB node 2 | `172.31.33.102` | 3306, 4567, 4568, 4444 |
 | `node3`  | MariaDB node 3 | `172.31.33.103` | 3306, 4567, 4568, 4444 |
@@ -40,26 +40,26 @@ sudo mysql_secure_installation
 
 ### 2. Configure Galera
 
-On `node1`, `node2`, and `node3`, edit `/etc/mysql/mariadb.conf.d/60-galera.cnf` and add:
+On `node1`, `node2`, and `node3`, edit `/etc/mysql/mariadb.conf.d/60-galera.cnf` and adjust like so:
 
 ```ini
-[mysqld]
-binlog_format=ROW
-default-storage-engine=innodb
-innodb_autoinc_lock_mode=2
-bind-address=0.0.0.0
+[galera]
+wsrep_on                 = ON
+wsrep_cluster_name       = "MariaDB Galera Cluster"
+wsrep_cluster_address    = gcomm://172.31.33.101,172.31.33.102,172.31.33.103
+binlog_format            = row
+default_storage_engine   = InnoDB
+innodb_autoinc_lock_mode = 2
 
-wsrep_on=ON
-wsrep_provider=/usr/lib/libgalera_smm.so
-
-wsrep_cluster_name="galera"
-wsrep_cluster_address="gcomm://172.31.33.101,172.31.33.102,172.31.33.103" # Your cluster nodes IP
+bind-address = 0.0.0.0
 
 wsrep_sst_method=rsync
 wsrep_sst_auth="sst_user:sst_password"
 
-wsrep_node_name="node1" # Your current node name
-wsrep_node_address="172.31.33.101" # Your current node IP
+wsrep_node_name="node1"
+wsrep_node_address="172.31.33.101"
+
+wsrep_provider=/usr/lib/libgalera_smm.so
 ```
 
 ### 3. Configure User
@@ -115,6 +115,7 @@ INSERT INTO foods (name) VALUES ('Nasi lemak'), ('Aglio olio'), ('Chicken chop')
 Then you can verify the table contents in the other nodes:
 
 ```sql
+USE foods;
 SELECT * FROM foods;
 ```
 
@@ -149,17 +150,20 @@ GRANT SELECT ON mysql.procs_priv TO 'maxscale_user'@'%';
 GRANT SELECT ON mysql.proxies_priv TO 'maxscale_user'@'%';
 GRANT SELECT ON mysql.roles_mapping TO 'maxscale_user'@'%';
 GRANT SHOW DATABASES ON *.* TO 'maxscale_user'@'%';
+FLUSH PRIVILEGES;
 ```
 
-Create a client user account. Your app will use this user to connect to MaxScale
+And a client user account for your app to connect to MaxScale
 
 ```sql
 CREATE USER 'app_user'@'%' IDENTIFIED BY 'app_password';
+GRANT ALL PRIVILEGES ON *.* TO 'app_user'@'%';
+FLUSH PRIVILEGES;
 ```
 
 ### 3. Configure MaxScale
 
-Edit the MaxScale config file located at `/etc/maxscale.cnf`. You need to configure the `servers`, `monitor`, `services` and `listeners`.
+Back to the `proxy1`, edit the MaxScale config file located at `/etc/maxscale.cnf`. You need to configure the `servers`, `monitor`, `services` and `listeners` as follows:
 
 ```ini
 [maxscale]
@@ -201,19 +205,20 @@ service=Splitter-Service
 port=3306
 ```
 
-You can check the config with:
+> You can check the config with:
+>
+> ```bash
+> maxscale --config-check
+> ```
 
-```bash
-maxscale --config-check
-```
-
+Start MaxScale service
 Start MaxScale service
 
 ```bash
 sudo systemctl start maxscale
 ```
 
-Checking MaxScale status with MaxCtrl
+Check MaxScale status with MaxCtrl
 
 ```bash
 sudo maxctrl show maxscale
@@ -241,6 +246,7 @@ MaxGUI uses the same credentials as `maxctrl`. The default username is `admin` w
 
 | Port | Purpose                     |
 | ---- | --------------------------- |
+| 3306 | MySQL client connections    |
 | 8989 | MaxGUI monitoring dashboard |
 
 ### 5. Verify
@@ -248,13 +254,18 @@ MaxGUI uses the same credentials as `maxctrl`. The default username is `admin` w
 You can connect to the nodes via the proxy with:
 
 ```bash
-mariadb -h 172.31.33.100 -u app_user -p
+mariadb -h 172.31.33.100 -u app_user -p
 ```
 
-<!-- ## Conclusion -->
+## Conclusion
+
+Congrats! You have setup a working multi-primary MariaDB Galera Cluster and MaxScale for read/write splitting.
+
+Please remember to harden your setup for production workloads.
 
 ## References
 
+- [https://mariadb.com/kb/en/mariadb-maxscale-2501-maxscale-2501-setting-up-mariadb-maxscale](https://mariadb.com/kb/en/mariadb-maxscale-2501-maxscale-2501-setting-up-mariadb-maxscale/)
 - [https://mariadb.com/kb/en/mariadb-maxscale-2501-maxscale-2501-read-write-splitting-with-mariadb-maxscale](https://mariadb.com/kb/en/mariadb-maxscale-2501-maxscale-2501-read-write-splitting-with-mariadb-maxscale/)
 - [https://mariadb.com/kb/en/mariadb-maxscale-25-01-getting-started](https://mariadb.com/kb/en/mariadb-maxscale-25-01-getting-started/)
 - [https://mariadb.com/kb/en/mariadb-maxscale-25-01-tutorials](https://mariadb.com/kb/en/mariadb-maxscale-25-01-tutorials/)
