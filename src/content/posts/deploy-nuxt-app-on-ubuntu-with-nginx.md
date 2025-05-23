@@ -1,5 +1,5 @@
 ---
-title: Deploy Nuxt App on Ubuntu with Nginx
+title: Deploy Nuxt App on Ubuntu with Nginx and PM2
 description: Use Nginx to server your Nuxt app
 image:
 tags:
@@ -9,12 +9,10 @@ tags:
   - nuxtjs
 createdDate: June 30 2024
 updatedDate:
-draft: true
+draft: false
 ---
 
-### Install Node.js [^1]
-
-[^1]: [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
+### Install Node.js
 
 ```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -24,9 +22,7 @@ nvm install $NODE_VERSION
 node -v
 ```
 
-### Install PM2 [^2]
-
-[^2]: [https://pm2.keymetrics.io/](https://pm2.keymetrics.io/)
+### Install PM2
 
 PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
 
@@ -34,7 +30,7 @@ PM2 is a production process manager for Node.js applications with a built-in loa
 sudo npm install -g pm2
 ```
 
-### Install Nuxt App
+### Clone The Nuxt App
 
 ```shell
 cd
@@ -113,10 +109,10 @@ sudo systemctl restart nginx
 ### Setup Firewall
 
 ```shell
-sudo ufw allow 'Nginx Full'
+sudo ufw allow 80,443/tcp
 ```
 
-#### Set Up SSL (Optional)
+### Set Up SSL (Optional)
 
 To secure your site with HTTPS, you can use Let's Encrypt to obtain an SSL certificate:
 
@@ -128,3 +124,8 @@ sudo certbot --nginx -d example.com
 ### Verify
 
 Verify by accessing your site using domain or ip address in the web browser.
+
+### References
+
+1. [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
+2. [https://pm2.keymetrics.io/](https://pm2.keymetrics.io/)
